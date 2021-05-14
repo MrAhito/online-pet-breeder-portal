@@ -1,0 +1,101 @@
+.userProfile_wrapper{
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 58.5vw;
+}
+.coverPic{
+    background-color: royalblue;
+    border-radius: 1vw;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    cursor: pointer ;
+    height: 43.2vh;
+}
+.profilePicture{
+    border-radius: 50%;
+    width: 11vw;
+    margin-top: -10.5vw;
+    height: 11.5vw;
+    cursor: pointer;
+    border: .5vh solid whitesmoke;
+}
+.usernames{
+    margin-top: 0vw;
+    font-weight: bolder;
+    font-size: 2.5vw;
+}
+.userTabs{
+    border-bottom: .2vw solid var(--borderColor);
+    align-items: center;
+    display: flex;
+    padding: 0 1vw .2vw 1vw;
+    flex-direction: row;
+    width: inherit;
+}
+.UAbtab{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 6vw;
+    border: .15vw solid var(--borderColor);
+    justify-content: center;
+    padding: .5vw 1vw;
+    margin-right: 1.5vw;
+    border-radius: .4vw;
+    transition: 0.2s all ease-in-out;
+    cursor: pointer;
+}
+.UAbtab:hover{
+    background-color: var(--primaryColor1);
+    border-color: var(--primaryColor);
+    transition: 0.2s all ease-in-out;
+    color: var(--primaryColor);
+}
+.iconTab{
+    font-size: 1.45vw;
+    margin: 0;
+}
+.nameTab{
+    margin: 0 .2vw;
+    font-size: 1.1vw;
+    font-weight: 600;
+}
+.infoWrapper{
+    display: flex;
+    width: inherit;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+.basicInfo{
+    border-color: var(--primaryColor);
+    margin-left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: flex-start;
+}
+.titleBasic{
+    font-size: 1.4vw;
+
+}
+.contactInfo{
+    margin: 0 0 1vw 2vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.infoIcon{
+    font-size: 1.5vw;
+    color: var(--primaryColor);
+    margin: 0;
+}
+.infoLabel{
+    margin-left: .5vw;
+    font-weight: 600;
+}

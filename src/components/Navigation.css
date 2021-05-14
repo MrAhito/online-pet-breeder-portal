@@ -1,0 +1,15 @@
+.nav{
+    background-color: var(--secondaryColor);
+    height: 7.3vh;
+    border-bottom: .25vh solid var(--borderColor);
+    display:  flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: space-between;
+
+}
+.nav-logo{
+    display: flex;
+    margin: auto;
+    height: 82%;
+}   

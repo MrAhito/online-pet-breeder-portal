@@ -1,0 +1,25 @@
+.userDashBoard_div{
+    display: flex;
+    flex-direction: row;
+    margin-top: .5vh;
+    }
+.left_div{  
+flex: 1;
+    height: 90vh;
+    position: fixed;
+    z-index: -1;
+    width: 25vw;
+}
+.middle_div{
+    height: 2000px;
+    width: 48vw;
+    margin: auto;
+}
+.right_div{
+    position: fixed;
+    right: 0;
+    width: 25vw;
+    z-index: -1;
+    height: 90vh;
+    flex: 1;
+}

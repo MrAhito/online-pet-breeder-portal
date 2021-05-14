@@ -1,0 +1,74 @@
+.adminNav{
+    align-items: center;
+    padding: 0 .8vw;
+}
+.iconAdmin{
+    margin-right: .35vw;
+    height: 80%;
+}
+
+.side-menuBars{
+    display: flex;
+    color: var(--primaryColor);
+   margin: 5vh .7vw;
+    font-size: 4vh;
+    background: none;
+}
+.navbar-toogle{
+    background-color: var(--secondaryColor);
+    width: 100%;
+    height: 5vh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.nav-menu-items{
+    margin-top: .8vh;
+    padding: 0vh 0;
+    list-style: none;
+    width: 100%;
+
+}
+.nav-menu{
+   background-color: var(--secondaryColor);
+    width:   35vh ;
+    border-right: .25vh solid #c8c7d1;
+    height: 100vh;
+   display: flex;
+   justify-content: center;
+    position: fixed;
+   top: 0;
+   left: -100%; 
+   transition: 550ms ease-in-out;
+}
+.nav-menu.active{
+    left: 0;
+   transition: 450ms ease-in-out;
+}
+.nav-text{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    list-style: none;
+    padding: .8vh 1.6vh .8vh 1.6vh;
+    height: 7vh;
+}
+.nav-text a{
+    text-decoration: none;
+    color: var(--primaryColor);
+    font-size: 2.7vh;
+    width: 95%;
+    height: 100%;
+    display: flex;
+    outline: none;
+    align-items: center;
+    padding: 0 1vh;
+    border-radius: .7vh;
+}
+.nav-text a:hover{
+    background: var(--primaryColor);
+    color: #fff;
+}
+span{
+    margin-left: 1.6vh;
+}

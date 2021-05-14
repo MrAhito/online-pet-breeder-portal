@@ -1,0 +1,24 @@
+:root{
+  --primaryColor1:rgba(248, 156, 54, .2);
+  --primaryColor:#f89c36;
+  --secondaryColor: #f3f3f3;
+  --tertiaryColor: #3d3224;
+  --secondaryFont: 'Montserrat', sans-serif;
+  --primaryFont: 'Nunito', sans-serif;
+  --borderColor: #c8c7d1;
+}
+
+body {
+  margin: 0;
+  background-color: rgb(252, 252, 252);
+  padding: 0;
+  box-sizing:  border-box;
+  font-family: var(--primaryFont);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

@@ -1,0 +1,50 @@
+.New_post{
+    background-color: var(--secondaryColor);
+    border-radius: .4vw;
+    padding: 1.25vw 3vw;
+}
+.user_post, .btton_post{
+    display: flex;
+    height: 3.4vw;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+}
+.iconUserPost{
+    display: flex;
+    flex-direction: column;
+    background-color:#fff;
+    padding : .2vw;
+    border: .1vh solid var(--borderColor);
+    width: 2.8vw;
+    border-radius: 50%;
+    user-select: none;
+    cursor:  pointer;
+    height: 2.7vw;
+}
+.inputUserPost{
+    width: 85%;
+    margin: auto 0 auto .5vw;
+    font-size: 1.05vw;
+    outline: none;
+    border-radius: 5vh;
+    padding: .6vw 1vw;
+    border: .2vh solid var(--borderColor);
+}
+.btnss{
+    display: flex;
+    width: 20vw;
+    padding: .6vw;
+    margin: auto;
+    border: .2vh solid var(--borderColor);
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.btnIcon{
+font-size: 1.5vw;
+}
+.btnLabel{
+    font-size: 1.2vw;
+
+}

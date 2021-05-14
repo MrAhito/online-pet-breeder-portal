@@ -1,0 +1,328 @@
+.log-container{
+    display: flex;
+    flex-direction: row;
+    width: 90vw;
+    margin: auto;
+    height: 77vh;
+}
+.fic{
+    text-decoration: none;
+    cursor:pointer;
+    user-select: none;
+}
+.bordertop{
+    margin-top: 2vh;
+    border-top: .3vh solid var(--borderColor);
+}
+.log-title, .f-container{
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+.log-title h1{
+margin-bottom: 0;
+margin-top: 7vw;
+font-size: 3.5vw;
+}
+.log-title p{
+margin-top: 0;
+margin-bottom: 50vh;
+font-size: 1.5vw;
+}
+.form-container{
+    width: 55%;
+    display: flex;
+    padding: 2vw;
+    margin:     auto;
+    background-color: var(--secondaryColor);
+    border-radius: .7vw;
+    margin-top: 12vh;
+    padding-bottom: 10vh;
+    flex-direction: column;
+    box-shadow: -5px 8px 25px 2px #c8c7d1;
+}
+.txt{
+    height: 5vh;
+    border-radius: .5vw;
+    border: .3vh solid #c8c7d1;
+    font-size: 2vh;
+    padding: .3vh 2vh;
+    background-color: transparent;
+    outline: none;
+    margin: .84vh ;
+    transition: all 0.2s ease-in-out;
+}
+.txt:focus, .txt:hover{
+    transition: all 0.2s ease-in-out;
+    border: .3vh solid var(--primaryColor);
+}
+.form-container a{
+    cursor: default;
+    font-size: 2vh;
+    height: 2.2vh;
+}
+.btn, .btn-reg:hover{
+    height: 6vh;
+    border-radius: .5vw;
+    border: none;
+    font-size: 2.7vh;
+    font-weight: 700;
+    padding-left: 2vh;
+    color: #fff;
+    background-color: transparent;
+    outline: none;
+    margin-top: 1.5vh;
+    margin-bottom:  1.7vh;
+    transition: all 0.2s ease-in-out;
+    background-color: var(--primaryColor);
+}
+.form-container hr{
+    margin: 0;
+    margin-top: 1.7vh;
+    width: 100%;
+    size: .1vh;
+}
+.btn-submit:hover, .btn-sub:hover, .btn-reg{
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    border: .33vh solid var(--primaryColor);
+    color: var(--primaryColor);
+    background-color: transparent;
+}
+.btn-sub{
+    width: 12vw;
+    margin: 1vh 2vw ;
+    height: 6.5vh;
+    text-align: center;
+}
+#btn-sub{
+    font: size 10rem;
+}
+.validate{
+    color: red;
+}
+.reg-container{
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    display: none;
+    margin: auto;
+    position: fixed;    
+    top: 6.9vh;
+    background-color:rgba(243, 243, 243, .9);
+    height: 83vh;
+}
+.reg-container.show{
+    display: block;
+}
+.reg-header-continer{
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    height: 100%;
+    background-color:rgba(243, 243, 243, 1);
+    border-radius: 2vh;
+    width: 35%;
+    box-shadow: -5px 8px 25px 2px #c8c7d1;
+    flex-direction: column;
+}
+.valida{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:transparent;
+    font-size: 1.2vw;
+}
+.valida.sh{
+    color: #ca2c2c;
+}
+.reg-form-c.show{
+    display: flex;
+    flex-direction: column;
+}
+.reg-form-c{
+    display: none;
+}
+
+.pet-reg{
+    padding: 2.5vh 0 3% 1.25vw;
+    margin: .5vw 1vw;
+    border-radius: .8vw;
+    border: .3vh solid #b9b8c2;
+    display: grid;
+    grid-template-columns: 1fr 1.6vw 1fr 1.6vw;
+
+}
+.pet-title{
+margin:-4.89vh 0 1vh -0.6vw;
+grid-column: 1/5;
+}
+.pet-title h1{
+    font-size: 1.6vw;
+    width: 13.5vw;
+    padding: .2vh;
+    text-align: center;
+    margin: 0;
+    font-weight: 600;
+    color: var(--primaryColor);
+    background-color: var(--secondaryColor);
+}
+.fixs{
+    margin-top:-1.6vh;
+}
+
+.reg-heder{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    padding: 1vh;
+    top: 3.35vw;
+    width: 33.8%;
+    position: fixed;
+    align-items: center;    
+    margin-bottom: 5vw;
+    /* border: .3vh solid var(--borderColor); */
+    border-bottom: .3vh solid var(--borderColor);
+}
+.exitBtn{
+    padding: .2vw;
+    border: .4vh solid var(--primaryColor);
+    display: flex;
+    font-size: 2vw;
+    border-radius: 50%;
+    position: fixed;
+    color: var(--primaryColor);
+    right: 33vw;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;    
+    transition: 350ms  ease-in-out;
+}
+.exitBtn:hover{
+    color: var(--secondaryColor);
+    transition: 350ms    ease-in-out;
+    background-color: var(--primaryColor);
+}
+.tittle-reeg{
+    margin: 0;
+    color: var(--primaryColor);
+    font-size: 4.05vh;
+}
+.reg-footer{
+    border-top: .3vh solid #c8c7d1;
+    position: fixed;
+    display: flex;
+    padding: .2vw .5vw .8vw .5vw;
+    flex-direction: row;
+    justify-content: center;
+    width: 34%;
+    height: 4vw;
+    bottom: 5.05vw;
+}
+.avatarHolder{
+    grid-column: 1/5;
+    border: .15vw solid var(--primaryColor);
+    display: flex;
+    border-radius: 50%;
+    margin: -1.1vw auto .5vw 10.9vw;
+    height: 15vh;
+    width: 15vh;
+    padding: .3vh;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.avatarHolder > img {
+border-radius: 50%;
+height: 15vh;
+width: 15vh;
+}
+
+#txtEmails, #txtPword, #txtAddr, #txtAnme{
+ grid-column: 1/4;
+ width: 27.9vw;
+}
+
+.reg_in{
+    padding: 0;
+    font-size: 1.85vh;
+    height: 5vh;
+    display: flex;
+    background-color: #fff;
+    margin: .55vh;
+    width: 12.2vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: .5vw;
+    padding-left: 1vw;
+    outline: none;
+    border: .12vw solid var(--tertiaryColor);
+}
+.reg_in.gid{
+    display: none;
+}
+.reg_in:hover{
+    border: .12vw solid var(--primaryColor);
+
+}
+.pet-reg > select, .pet-reg > input[type=date]{
+    cursor: pointer;
+}
+.pet-reg > select{
+    height: 5.4vh;
+    width: 13.5vw;
+}
+
+.petf{
+    height: 7vw;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.termscon{
+    font-size: 1vw;
+    cursor: pointer;
+}
+.flow-comn{
+    height: 56vh;
+    width: 35vw;
+    overflow-y: scroll;
+    position: fixed;
+    top: 7.8vw;
+    
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}
+.reg_pa{
+    font-size: 1.85vh;
+    margin-left: -.1vw;
+    border: none;
+    outline: none;
+    width: 90%;
+}
+.eyey{
+    cursor: pointer;
+    margin: auto;
+    font-size: 1.3vw;
+    user-select: none;
+}
+.eyey.hida{
+    display: none;
+}
+.eyey:hover{
+    color: var(--primaryColor);
+}
+.borderfix{
+    margin-right: 0;
+}

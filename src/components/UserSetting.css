@@ -1,0 +1,10 @@
+
+.setinds{
+    background-color: var(--secondaryColor);
+    border-radius: .4vw;
+    height: 50%;
+    padding: .4vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}

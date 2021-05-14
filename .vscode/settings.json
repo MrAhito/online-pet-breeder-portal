@@ -1,0 +1,8 @@
+{
+    "editor.formatOnSave": true,
+    "prettier.requirePragma": true,
+    "editor.formatOnSaveMode": "modifications",
+    "eslint.run": "onSave",
+    "emmet.triggerExpansionOnTab": true,
+    "emmet.showSuggestionsAsSnippets": true
+}
