@@ -45,14 +45,14 @@
     justify-content: center;
     padding: .5vw 1vw;
     margin-right: 1.5vw;
-    border-radius: .4vw;
     transition: 0.2s all ease-in-out;
     cursor: pointer;
 }
 .UAbtab:hover{
     background-color: var(--primaryColor1);
     border-color: var(--primaryColor);
-    transition: 0.2s all ease-in-out;
+    transition: 0.45s all ease-in-out;
+    border-radius: .7vw;
     color: var(--primaryColor);
 }
 .iconTab{

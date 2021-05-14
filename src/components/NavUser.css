@@ -57,6 +57,7 @@
 .CgICons{
     display: flex;
     flex-direction: row;
+    height: 3.33vh;
     text-align: center;
     padding: .65vw;
     color: var(--tertiaryColor);
@@ -67,11 +68,13 @@
     cursor: pointer;
 }
 .CProfile{
+    height: 5.33vh;
     padding:0.4vh .75vw;
     border-radius: 200vw;
 }
 .mainDiv, .breedDiv{
     width: 45%;
+    height: 3.33vh;
     align-items: center;
     justify-content: center;
 }
@@ -122,10 +125,9 @@
 .fixes, .mainfix{
     background-color: var(--primaryColor1);
     transition: .3s ease-in-out;
-    color:var(--primaryColor);
+    border: .3vh solid var(--primaryColor);
 }
 .fixes:hover, .mainfix:hover{
     background-color: var(--primaryColor1);
     transition: .3s ease-in-out;
-    color:var(--primaryColor);
 }

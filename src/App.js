@@ -5,6 +5,7 @@ import HomePage from './pages/HomePage';
 import Dashboard from './pages/Dashboard';
 import Admin from './pages/Admin';
 import ProfileUser from './pages/ProfileUser';
+import HomeTrain from './trial/homeTrain'
 
 function App() {
 
@@ -23,6 +24,9 @@ function App() {
         <Switch>
           <Route path='/userprofile' exact component={ProfileUser}/>
         </Switch>
+        <Switch>
+        <Route path='/training-page' exact component={HomeTrain}/>
+      </Switch>
       </Router>
     </>
   );
