@@ -106,3 +106,22 @@ export const BreedDataCat = [
         text: 'American Shorthair',
     },
 ]
+
+export const PostTDataTags = [
+    {
+        value: 'Find Breed',
+        label: 'Find Breed',
+    },
+    {
+        value: 'Show Off',
+        label: 'Show Off',
+    },
+    {
+        value: 'Celebration',
+        label: 'Celebration',
+    },
+    {
+        value: 'Report',
+        label: 'Report',
+    },
+]

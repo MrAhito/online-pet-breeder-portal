@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import * as iIcons from 'react-icons/fi'
 import { Link } from 'react-router-dom';
+import Select from 'react-select';
 import { auth } from '../firebase/firebase'
+import { PostTDataTags } from './SelectData';
+import PostIcon from '../images/addFiles.svg'
 import './USerPostDiv.css'
 
 class USerPostDiv extends Component {
@@ -69,13 +72,21 @@ class USerPostDiv extends Component {
                             <img src={this.state.userProfile} alt='icon' onClick={this.toProfile} className='iconUserPost' />
                             <textarea placeholder='Create a Post  here....' className='textAPostt' />
                     </div>
+
                     <div className='postInput'>
-                        
-                    </div>
-                    <div className='postInput'>
-                        
-                    </div>
-                    
+                            <img src={PostIcon} title='Add Image' className='ImgPost' alt='logo' />
+                            <img src={null} alt='post' className='postImage' />
+                        </div>
+
+                        <div className='postInput'>
+                            <div className='titleTags'>Tags:</div>
+                            <Select className='TagSelect' id='tagSelect' options={PostTDataTags} isMulti isSearchable />
+                        </div>
+                        <div className='postInput'>
+                            <div className='postbutt'>
+                                <span className='btnLabel'>Submit Post</span>
+                            </div>
+                        </div>
                 </div>
                 <div onClick={this.hidePost.bind(this)} className={this.state.postStat ? 'blocker hide': 'blocker'}/>
               </div>
