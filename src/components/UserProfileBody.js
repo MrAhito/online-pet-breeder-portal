@@ -20,8 +20,18 @@ import './UserProfileBody.css'
             Password: '',
             ContactNum: '',
             timestamp: '',
-            PetData: [],
-
+            userInfo:true,
+            petInfo:false,
+            postInfo:false,
+            friendInfo:false,
+            petName:[],
+            petID:[],
+            petImage:[],
+            Breed:[],
+            petBirth:[],
+            Species:[],
+            Weight:[],
+            Height:[],
         }
     }
 
@@ -59,11 +69,45 @@ import './UserProfileBody.css'
            if(!( user === null)){
             const ids = user.uid
            this.getDoc(db, ids);
+           this.getPetData(db, ids);
                 }
             }) 
         }catch(error){
             console.error(error);
         }
+    }
+
+    handleTabClick(a, b, c ,d){
+        this.setState({
+            userInfo:a,
+            petInfo:b,
+            postInfo:c,
+            friendInfo:d,
+        })
+    }
+
+   async getPetData(dbs, id){
+        const PetRef = dbs.collection('pets');
+        const pets = await PetRef.where('OwnerId', '==', id).get();
+        if (pets.empty) {
+            console.log('No matching documents.');
+            return;
+          }  
+          pets.forEach(doc => {
+              const petd = doc.data();
+            this.setState({
+                petName : petd.Name,
+                petID : petd.PetId,
+                Breed : petd.Breed,
+                petBirth : petd.Birthdate,
+                Species : petd.Species,
+                Weight : petd.Weight,
+                Height : petd.Height,
+                petImage : petd.photoURL,
+            })
+            console.log(doc.id, '=>', doc.data());
+            // console.log(this.state.petName)
+          });
     }
     
     componentDidMount(){
@@ -77,12 +121,12 @@ import './UserProfileBody.css'
                 <img src={this.state.ProfilePic} alt='Profile' className='profilePicture'></img>
                     <p className='usernames'>{this.state.UserFName}  {this.state.UserLName}</p>
                     <div className='userTabs'>
-                        <div className='UAbtab' title='About'><Icons.FiInfo className='iconTab' /><span className='nameTab'>About</span></div>
-                        <div className='UAbtab' title='Friends'><mdIcons.MdPeople className='iconTab' /><span className='nameTab'>Friends</span></div>
-                        <div className='UAbtab' title='Post'><aiIcons.CgFileDocument className='iconTab' /><span className='nameTab'>Post</span></div>
-                        <div className='UAbtab' title='Pets'><mdIcons.MdPets className='iconTab' /><span className='nameTab'>Pets</span></div>
+                        <div className={this.state.userInfo ? 'UAbtab info' : 'UAbtab'} title='About' onClick={(e) => {this.handleTabClick(true, false, false, false) }}><Icons.FiInfo className='iconTab' /><span className='nameTab'>About</span></div>
+                        <div className={this.state.friendInfo ? 'UAbtab friend' : 'UAbtab'} title='Friends'  onClick={(e) => {this.handleTabClick(false, false, false,true) }}><mdIcons.MdPeople className='iconTab' /><span className='nameTab'>Friends</span></div>
+                        <div className={this.state.postInfo ? 'UAbtab post' : 'UAbtab'} title='Post' onClick={(e) => {this.handleTabClick(false, false, true, false) }}><aiIcons.CgFileDocument className='iconTab' /><span className='nameTab'>Post</span></div>
+                        <div className={this.state.petInfo ? 'UAbtab pets' : 'UAbtab'} title='Pets' onClick={(e) => {this.handleTabClick(false,true, false, false) }}><mdIcons.MdPets className='iconTab' /><span className='nameTab'>Pets</span></div>
                     </div>
-                    <div className='infoWrapper'>
+                    <div className={this.state.userInfo ? 'Wrapper info' : 'Wrapper '}>
                         <div className='basicInfo'>
                             <h1 className='titleBasic'>Contact Information: </h1>
                             <div className='contactInfo'><Icons.FiMail className='infoIcon' /><span className='infoLabel'>Email Address:  </span><span className='infoVal'>{this.state.Email}</span></div>
@@ -95,6 +139,22 @@ import './UserProfileBody.css'
                             <div className='contactInfo'><aiIcons.CgGenderFemale className='infoIcon' /><span className='infoLabel'>Gender:  </span><span className='infoVal'>{this.state.Gender}</span></div>
                         </div>
                     </div>
+
+                    <div className={this.state.postInfo ? 'Wrapper post' : 'Wrapper '}>
+                    awd
+                    </div>
+
+                    <div className={this.state.friendInfo ? 'Wrapper friend' : 'Wrapper '}>
+                    ad
+                    </div>
+
+                    <div className={this.state.petInfo ? 'Wrapper pet' : 'Wrapper '}>
+                        <h1 className='titleBasic'>Pet Information: </h1>
+                        <div className='pet-info'>
+                            <img className='petProfile' src={this.state.petImage} alt='pet'/>
+                        </div>
+                    </div>
+
             </div>
             </>
         )

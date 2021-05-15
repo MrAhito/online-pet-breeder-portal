@@ -78,13 +78,13 @@ font-size: 1.5vw;
     z-index: 1;
     padding: 2vw 1vw;
     border-radius: 1vw;
-    margin: -17.5vh 0 0 -3.55vw;
+    margin: -17.5vh 0 0 -1vw;
     background-color: var(--secondaryColor);
     border: .2vh solid var(--primaryColor);
     height: 33vw; 
     width: 42vw; 
 }
-.blocker{
+.blocker, .loadingPage{
     display: none;
     position: fixed;
     top: 0;
@@ -122,9 +122,9 @@ font-size: 1.5vw;
     border: .25vh solid var(--primaryColor)
 }
 .postImage{
-    width: 29.8vw;
-    height: 35vh;
-    border: .25vh solid var(--secondaryColor);
+    width: 31.5vw;
+    height: 34.7vh;
+    border: .25vh solid var(--borderColor);
 }
 .TagSelect{
     width: 37.6vw;
@@ -149,11 +149,42 @@ font-size: 1.5vw;
     cursor: pointer;
     border: .2vw solid var(--secondaryColor);
     transition: 450ms all ease-in-out;
-    margin-right: 2.4vw;
+    margin-right: .84vw;
 }
 .ImgPost:hover{
     border: .2vw solid var(--primaryColor);
     background-image: radial-gradient(var(--primaryColor) 35%, transparent 85%);
     border-radius: .8vw;
     transition: 450ms all ease-in-out;
+}
+.loadingPage{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, .7) ;
+}
+.loadingPage.hide{
+    display: flex;
+}
+.load-wrapper{
+display: flex;
+flex-direction: column;
+    border: 1px solid var(--primaryColor);
+    align-items: center;
+width: 30vw;
+border-radius: 2vw;
+}
+.loading{
+    border: 1px solid red;
+    width: 20vw;
+}
+.loadStat{
+    margin-top: -2vw;
+    color:var(--primaryColor);
 }

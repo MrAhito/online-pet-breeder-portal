@@ -251,7 +251,7 @@ const showError = () => {
         }
     }
 
-const onImgChange = (event, setImgFile, setImgFileUp) => {
+ const onImgChange = (event, setImgFile, setImgFileUp) => {
         const reader = new FileReader();
         reader.onload = () => {
             if(reader.readyState === 2){
