@@ -55,13 +55,14 @@ margin: auto;
 justify-content: center;
 }
 .divwa{
-width: 40vw;
+width: 39vw;
 margin: auto;
 }
 .SPost-wrapper{
 padding: 1vh;
 border: .25vh solid var(--primaryColor);
 display: flex;
+border-radius: .5vw;
 margin: 1.5vw auto 1.5vw auto;
 flex-direction: column;
 }
@@ -198,7 +199,9 @@ margin: auto   ;
     padding: 4vh;
     text-align: center;
     font-size: 1.7vw;
-
+}
+.checkEmty{
+    display: flex;
 }
 .hidp{
     display: none;

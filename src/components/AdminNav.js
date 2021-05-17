@@ -11,6 +11,7 @@ function AdminNav() {
     const showSideBar = () => setSidebar(!sidebar);
     const redirec = ()=>{
         history.push('/');
+        window.location.reload(false);
     }
     return (
         <>

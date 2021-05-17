@@ -155,16 +155,12 @@ async setData(uids, image, postData){
                     <input type='text'  onClick={this.showPost.bind(this)} name='textPost'  className='inputUserPost' placeholder='Create a Post  here....'/>
                 </div>
                     <div className='btton_post'>
-                        <div className='btnss'>
+                        <div className='btnss' onClick={this.showPost.bind(this)}>
                             <div className='postbutt'>
-                                <iIcons.FiImage className='btnIcon' /><span className='btnLabel'>Add Image</span>
+                                <iIcons.FiClipboard className='btnIcon' /><span className='btnLabel'>Add Post</span>
                             </div>
                         </div>
-                        <div className='btnss'>
-                            <div className='postbutt'>
-                                <iIcons.FiTag className='btnIcon' /><span className='btnLabel'>Add Tag</span>            
-                            </div>
-                        </div>
+                        
                     </div>
 
                 <div className={ this.state.postStat ? 'postingDiv hide' : 'postingDiv'}>

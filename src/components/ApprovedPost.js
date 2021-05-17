@@ -4,10 +4,14 @@ import db from '../firebase/firebase'
 function ApprovedPost() {
 
     const [PostAppr, setPostApr] = useState([])   
+    const [emts, setemts] = useState(false)   
 
     useEffect(() => {
     const fetchData = async () => {
       const data = await db.collection("post/approved/post").get()
+      if((data.docs.map(doc => doc.data())).length===0){
+        setemts(true)
+      }else{setemts(false)}
       setPostApr(data.docs.map(doc => doc.data()))
     }
     fetchData()
@@ -28,6 +32,15 @@ function ApprovedPost() {
             </div>
             </div>
         ))}
+        <div className={emts ? 'checkEmty' : 'checkEmty hidp' }>
+        <div className='divwa' >
+            <div className='SPost-wrapper' >
+                <div className='posterInfo'>
+                    <h1>No post Available</h1>                            
+                </div>
+            </div>
+            </div>
+        </div>
         </>
     )
 }

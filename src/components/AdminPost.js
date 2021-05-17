@@ -9,6 +9,8 @@ function AdminPost() {
     const [approve, setapprove] = useState(false)   
     const [decline, setdecline] = useState(false)   
     const [warn, setwarn] = useState(false)   
+    const [emta, setemta] = useState(false)   
+    const [emtd, setemtd] = useState(false)   
     const [Post, setPost] = useState([])   
     const [PostDec, setPostDec] = useState([])   
 
@@ -16,14 +18,21 @@ function AdminPost() {
     const fetchData = async () => {
       const data = await db.collection("post/submitted/post").get()
       const data2 = await db.collection("post/declined/post").get()
-      setPostDec(data2.docs.map(doc => doc.data()))
+      if((data2.docs.map(doc => doc.data())).length===0){
+        setemtd(true)
+      }else{setemtd(false)}
+      if((data.docs.map(doc => doc.data())).length===0){
+        setemta(true)
+      }else{setemta(false)}
       setPost(data.docs.map(doc => doc.data()))
+      setPostDec(data2.docs.map(doc => doc.data()))
     }
     fetchData()
     })
 
     const ApprovePost = (acrt, postid,poserName, photo, post, poserId, poserDp, tag, time) => {
-        const postRef = db.doc("post/"+acrt+"/post/"+postid);
+         const postRef = db.doc("post/"+acrt+"/post/"+postid);
+         setwarn(false)
         postRef.set({
             postID:postid,
             postedByName:poserName,
@@ -35,10 +44,10 @@ function AdminPost() {
             tags:tag,
             timestamp:time,
         }).then(res => {
-            console.log("Post moved to Approved");
-        db.doc("post/submitted/post/"+postid).delete().then(
-                console.log("post deleted in submtted"),
-        )
+         db.doc("post/submitted/post/"+postid).delete();
+         console.log('Post Successfully Submitted')
+         window.location.reload(false);
+         
         });
         
     }
@@ -48,6 +57,7 @@ function AdminPost() {
         setdecline(d);
         
     }
+
 
     return (
         <>
@@ -76,7 +86,7 @@ function AdminPost() {
                                 
                                  <div className={warn ? 'warning-wrapper move' : 'warning-wrapper '}>
                                  <div className='warning-div'>
-                                    <div className='closeWarn' onClick={(e) => {setwarn(false); console.log(warn)}}><cgIcons.AiOutlineClose/></div>
+                                    <div className='closeWarn' onClick={(e) => {setwarn(false)}}><cgIcons.AiOutlineClose/></div>
                                      <h1 className='titleWard'>Are you sure you want to approve or decline this post?</h1>
                                      <div className='actBtndiv'>
                                     <div onClick={(e) => 
@@ -92,11 +102,21 @@ function AdminPost() {
                                  </div>
                                 </div>
                             ))}
-
+                            <div className={emta ? 'checkEmty' : 'checkEmty hidp' }>
+                            <div className='divwa' >
+                                <div className='SPost-wrapper' >
+                                    <div className='posterInfo'>
+                                        <h1>No post Available</h1>                            
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
                     </div>   
+
                     <div className={approve ? 'post-wrap' : 'post-wrap hidp'}>
                         <ApprovedPost/>
                     </div>   
+
                     <div className={decline ? 'post-wrap' : 'post-wrap hidp'}>
                     {PostDec.map((Posts, index) => (
                         <div className='divwa' key={index}>
@@ -112,9 +132,16 @@ function AdminPost() {
                         </div>
                         </div>
                     ))}
+                    <div className={emtd ? 'checkEmty' : 'checkEmty hidp' }>
+                    <div className='divwa' >
+                        <div className='SPost-wrapper' >
+                            <div className='posterInfo'>
+                                <h1>No post Available</h1>                            
+                            </div>
+                        </div>
+                        </div>
+                    </div>
                     </div>   
-                    
-                   
                 </div>
            </div>
         </>
