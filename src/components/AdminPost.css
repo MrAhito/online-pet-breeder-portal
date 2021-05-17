@@ -1,0 +1,210 @@
+.postWrapper{
+display: flex;
+flex-direction: column;
+align-items: center;
+width: 88vw;
+margin: auto;
+height: 92.2vh;
+}
+.post-con{
+display: flex;
+width: 80%;
+flex-direction: column;
+justify-content: center;
+
+}
+.titlePost{
+    font-size: 2.2vw;
+    font-weight: 600;
+    padding: 2vh 0;
+}
+.posTabs{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+border-bottom: .3vh solid var(--borderColor);
+height: 7.5vh;
+}
+.posttabs{
+    font-size: 1.2vw;
+    font-weight: 600;
+    display: flex;
+    width: 10vw;
+    margin: 0 1vw;
+    padding: 1.2vh 0;
+    text-align: center;
+    justify-content: center;
+    cursor: pointer;
+    border: .25vh solid var(--borderColor);
+    transition: 450ms all ease-in-out;
+}
+.posttabs:hover, .on{
+    transition: 450ms all ease-in-out;
+    border-color: var(--primaryColor);
+    border-radius: .5vw;
+    background-color: var(--primaryColor1);
+
+}
+.post-wrap{
+display: flex; 
+flex-direction: column;
+align-items: center;
+padding: 8vh 0;
+width: 70.3vw;
+margin: auto;
+justify-content: center;
+}
+.divwa{
+width: 55%;
+}
+.SPost-wrapper{
+width: 40.8vw;
+padding: 1vh;
+border: .25vh solid var(--primaryColor);
+display: flex;
+margin: 1.5vw auto 1.5vh auto;
+flex-direction: column;
+}
+.posterInfo{
+    display: flex;
+    height: 8vh;
+    align-items: center;
+    flex-direction: row;
+}
+.posterDp{
+    border-radius: 50%;
+    width: 3.25vw;
+    cursor: pointer;
+    height: 3.25vw;
+}
+.posterName{
+    margin-left: .3vw;
+    cursor: pointer;
+    width: 35%; 
+    font-weight: 600;
+    font-size: 1.2vw;
+}
+.postDataText{
+font-size: 1.1vw;
+margin: 1vh auto;
+width: 95%;
+}
+.posttime{
+width: 50%;
+font-size: .85vw;
+margin: auto;
+text-align: center;
+}
+.postTagss{
+    border: .3vh solid var(--primaryColor);
+    font-size: 1vw;
+    padding: .5vh 1vh;
+    margin: .5vw 0;
+    cursor: default;
+    align-self: baseline;
+    font-weight: 900;
+}
+.actBtndiv{
+display: flex;
+    flex-direction: row;
+margin: auto   ;
+}
+.actBtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-weight: 600;
+    padding: .65vh 2.5vh;
+    margin: auto;
+    width:10vw;
+    cursor: pointer;
+    border: .35vh solid var(--borderColor);
+    transition: 450ms all ease-in-out;
+    font-size: 2.4vh;
+}
+
+.apr:hover{
+    border-color:rgb(17, 161, 17);
+    color: rgb(17, 161, 17);
+    border-radius: 1vw;
+    background-color: var(--primaryColor1);
+    transition: 450ms all ease-in-out;
+}
+.dec:hover{
+    border-color:rgb(240, 31, 31);
+    color: rgb(240, 31, 31);
+    border-radius: 2vw;
+    background-color: var(--primaryColor1);
+    transition: 450ms all ease-in-out;
+}
+.iconPos{
+    height: 3vh;
+    padding: 0;
+    margin: 0;
+    font-size: 2vw;
+}
+.btnosttil{
+    padding: 0;
+    margin: 0;
+
+}
+
+.warning-wrapper{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    transition: 450ms all ease-in-out;
+    transform: translate(25%, 100%);
+    background-color: rgba(255, 255, 255, 0);
+}
+.warning-div{
+    width: 30vw;
+    cursor: pointer;
+    height: 30vh;
+    background-color: var(--bodyColor);
+    border-radius: 1vw;
+    border: .15vw solid var(--primaryColor);
+    margin: auto;
+}
+.closeWarn{
+    display: flex;
+    font-size:1.8vw;
+    padding: 0.5;
+    margin: .2vw 0 0 27.5vw;
+    position: absolute;
+    border-radius: 50%;
+    color: var(--primaryColor);
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bodyColor);
+    border: .185vw solid var(--primaryColor);
+    width: 2vw;
+    height: 2vw;
+    transition: 450ms all ease-in-out;
+}
+.closeWarn:hover{
+    border-color: var(--bodyColor);
+    background-color: var(--primaryColor);
+    color: var(--bodyColor);
+    transition: 450ms all ease-in-out;
+}
+.titleWard{
+    padding: 4vh;
+    text-align: center;
+    font-size: 1.7vw;
+
+}
+.hidp{
+    display: none;
+}
+.move{
+    transform: translate(-28.5%, 0%);
+    transition: 450ms all ease-in-out;
+
+}

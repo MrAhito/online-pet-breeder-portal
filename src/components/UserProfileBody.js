@@ -2,8 +2,10 @@ import React, { Component } from 'react'
 import db, { auth } from '../firebase/firebase';
 import * as aiIcons from 'react-icons/cg'
 import * as Icons from 'react-icons/fi'
+import * as faIcons from 'react-icons/fa'
 import * as mdIcons from 'react-icons/md'
 import './UserProfileBody.css'
+import PetInforma from './PetInforma';
  class UserProfileBody extends Component {
    
     constructor() {
@@ -24,14 +26,6 @@ import './UserProfileBody.css'
             petInfo:false,
             postInfo:false,
             friendInfo:false,
-            petName:[],
-            petID:[],
-            petImage:[],
-            Breed:[],
-            petBirth:[],
-            Species:[],
-            Weight:[],
-            Height:[],
         }
     }
 
@@ -43,6 +37,7 @@ import './UserProfileBody.css'
           console.log('No such document!');
         } else {
           const datas =  doc.data();
+            const join = new Date(datas.Timestamp.seconds).toString();
         this.setState({
             UserFName : datas.Firstname,
             UserLName : datas.Lastname,
@@ -54,10 +49,9 @@ import './UserProfileBody.css'
             Email : datas.email,
             Password : datas.Pasword,
             ContactNum : datas.phoneNum,
-            timestamp: datas.Timestamp,
+            timestamp: join,
                 });
             }
-            console.log(this.state.timestamp.seconds)
         }catch(error){
             console.error(error)
         }
@@ -69,7 +63,6 @@ import './UserProfileBody.css'
            if(!( user === null)){
             const ids = user.uid
            this.getDoc(db, ids);
-           this.getPetData(db, ids);
                 }
             }) 
         }catch(error){
@@ -84,30 +77,6 @@ import './UserProfileBody.css'
             postInfo:c,
             friendInfo:d,
         })
-    }
-
-   async getPetData(dbs, id){
-        const PetRef = dbs.collection('pets');
-        const pets = await PetRef.where('OwnerId', '==', id).get();
-        if (pets.empty) {
-            console.log('No matching documents.');
-            return;
-          }  
-          pets.forEach(doc => {
-              const petd = doc.data();
-            this.setState({
-                petName : petd.Name,
-                petID : petd.PetId,
-                Breed : petd.Breed,
-                petBirth : petd.Birthdate,
-                Species : petd.Species,
-                Weight : petd.Weight,
-                Height : petd.Height,
-                petImage : petd.photoURL,
-            })
-            console.log(doc.id, '=>', doc.data());
-            // console.log(this.state.petName)
-          });
     }
     
     componentDidMount(){
@@ -136,7 +105,8 @@ import './UserProfileBody.css'
                         <div className='basicInfo'>
                             <h1 className='titleBasic'>Basic Information: </h1>
                             <div className='contactInfo'><Icons.FiGift className='infoIcon' /><span className='infoLabel'>Birthdate:  </span><span className='infoVal'>{this.state.Birthdate}</span></div>
-                            <div className='contactInfo'><aiIcons.CgGenderFemale className='infoIcon' /><span className='infoLabel'>Gender:  </span><span className='infoVal'>{this.state.Gender}</span></div>
+                            <div className='contactInfo'><faIcons.FaTransgender className='infoIcon' /><span className='infoLabel'>Gender:  </span><span className='infoVal'>{this.state.Gender}</span></div>
+                            <div className='contactInfo'><aiIcons.CgTime className='infoIcon' /><span className='infoLabel'>Joined on:  </span><span className='infoVal'>{this.state.timestamp}</span></div>
                         </div>
                     </div>
 
@@ -150,9 +120,7 @@ import './UserProfileBody.css'
 
                     <div className={this.state.petInfo ? 'Wrapper pet' : 'Wrapper '}>
                         <h1 className='titleBasic'>Pet Information: </h1>
-                        <div className='pet-info'>
-                            <img className='petProfile' src={this.state.petImage} alt='pet'/>
-                        </div>
+                        <PetInforma useID = {this.state.UserID}/>                       
                     </div>
 
             </div>

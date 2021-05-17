@@ -6,6 +6,7 @@ import Dashboard from './pages/Dashboard';
 import Admin from './pages/Admin';
 import ProfileUser from './pages/ProfileUser';
 import HomeTrain from './trial/homeTrain'
+import AdmPostPage from './pages/AdmPostPage';
 
 function App() {
 
@@ -27,6 +28,9 @@ function App() {
         <Switch>
         <Route path='/training-page' exact component={HomeTrain}/>
       </Switch>
+      <Switch>
+      <Route path='/admin/post' exact component={AdmPostPage}/>
+    </Switch>
       </Router>
     </>
   );

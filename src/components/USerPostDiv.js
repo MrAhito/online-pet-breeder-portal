@@ -8,6 +8,7 @@ import { PostTDataTags } from './SelectData';
 import PostIcon from '../images/addFiles.svg'
 import './USerPostDiv.css'
 import Axios from 'axios';
+import ApprovedPost from './ApprovedPost';
 
 class USerPostDiv extends Component {
     constructor(props) {
@@ -104,26 +105,25 @@ async Posting () {
 
 async setData(uids, image, postData){
         const userRef = db.collection("post/submitted/post/");
-            const snaps = await userRef.get();
-            var counter = snaps.docs.length
-            console.log(counter)
-        const postRef = db.doc("post/submitted/post/post#"+counter);
-        const sanp = await postRef.get();
+        const sanp = await userRef.get();
             if(!sanp.exists){
                 try {
-                   await postRef.set({
+                   await userRef.add({
                         timestamp : new Date(),
                         photoURL : image,
                         post: postData,
                         postedBy : uids,
+                        postedByName: this.state.userName,
+                        postedByImg: this.state.userProfile,
                         tags : this.state.tagVal,
                         status: 'pending',
+                    }).then(res => {
+                        db.doc("post/submitted/post/"+res.id).set({postID : res.id,}, { merge: true })
+                        console.log('Post Submitted Successfully');
+                        window.location.reload(false);
                     })
-                       console.log('Post Submitted Successfully');
-                       window.location.reload();
-
                 }catch (error) {
-                     console.log("Error in creating user info", error);
+                     console.log("Error in creating post info", error);
                 }
             }
     }
@@ -166,6 +166,8 @@ async setData(uids, image, postData){
                             </div>
                         </div>
                     </div>
+                <ApprovedPost/>
+
                 <div className={ this.state.postStat ? 'postingDiv hide' : 'postingDiv'}>
                     <div className='postInput'>
                             <img src={this.state.userProfile} alt='icon' onClick={this.toProfile} className='iconUserPost' />
@@ -196,6 +198,7 @@ async setData(uids, image, postData){
                 </div>
                 <div onClick={this.hidePost.bind(this)} className={this.state.postStat ? 'blocker hide': 'blocker'}/>
               </div>
+
             </>
         )
     }

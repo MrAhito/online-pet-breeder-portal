@@ -71,6 +71,7 @@ font-size: 1.5vw;
     transition: 450ms all ease-in-out;
 }
 .postingDiv{
+    box-shadow: -5px 8px 25px 2px #c8c7d1;
     display: none;
     flex-direction: column;
     align-items: center;

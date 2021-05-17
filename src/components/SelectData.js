@@ -5,6 +5,27 @@ export const BreedDatadefault = [
         text: 'Please select Pet Species'
     },
 ]
+export const PetVitamins = [
+    {
+        value: 'CystoPro Supplement',
+        label: 'CystoPro Supplement',
+    }, {
+        value: 'Protexin Pro-Kolin',
+        label: 'Protexin Pro-Kolin',
+    }, {
+        value: 'Fedgrozyme Enzyme',
+        label: 'Fedgrozyme Enzyme',
+    }, {
+        value: 'Septaplext VitaTreats',
+        label: 'Septaplext VitaTreats',
+    }, {
+        value: 'NaturVet Advance Care',
+        label: 'NaturVet Advance Care',
+    }, {
+        value: 'K9 Supet Fuel',
+        label: 'K9 Supet Fuel',
+    },
+]
 export const BreedDataDog = [
     {
         value: '',
