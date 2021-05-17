@@ -166,7 +166,6 @@ async setData(uids, image, postData){
                             </div>
                         </div>
                     </div>
-                <ApprovedPost/>
 
                 <div className={ this.state.postStat ? 'postingDiv hide' : 'postingDiv'}>
                     <div className='postInput'>
@@ -198,6 +197,7 @@ async setData(uids, image, postData){
                 </div>
                 <div onClick={this.hidePost.bind(this)} className={this.state.postStat ? 'blocker hide': 'blocker'}/>
               </div>
+              <ApprovedPost/>
 
             </>
         )

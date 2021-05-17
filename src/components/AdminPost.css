@@ -55,14 +55,14 @@ margin: auto;
 justify-content: center;
 }
 .divwa{
-width: 55%;
+width: 40vw;
+margin: auto;
 }
 .SPost-wrapper{
-width: 40.8vw;
 padding: 1vh;
 border: .25vh solid var(--primaryColor);
 display: flex;
-margin: 1.5vw auto 1.5vh auto;
+margin: 1.5vw auto 1.5vw auto;
 flex-direction: column;
 }
 .posterInfo{
