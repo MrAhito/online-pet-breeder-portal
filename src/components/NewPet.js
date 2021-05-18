@@ -1,16 +1,15 @@
 import React, { useRef, useState } from 'react'
-import db, { auth } from '../firebase/firebase'
-import * as Icons from 'react-icons/fa'
+// import db, { auth } from '../firebase/firebase'
+// import * as Icons from 'react-icons/fa'
 import Select from 'react-select'
-import Axios from 'axios'
+// import Axios from 'axios'
 import { BreedDataCat, BreedDatadefault, BreedDataDog, PetVitamins } from './SelectData'
-import LoadSc from './LoadSc'
 
 function NewPet() {
     const [breedData, setbreedData] = useState(BreedDatadefault);
-    const [petEdit, setpetEdit] = useState(false)
+    // const [petEdit, setpetEdit] = useState(false)
     const [PetName, setPetName] = useState("");
-    const [Petids, setPetids] = useState("");
+    // const [Petids, setPetids] = useState("");
     const [PetBDate, setPBdate] = useState("");
     const [PetSpec, setPetSpec] = useState("");
     const [PetBreed, setPetBreed] = useState("");
@@ -26,7 +25,7 @@ function NewPet() {
     const [dpImg, setdpImg] = useState('https://www.shareicon.net/data/256x256/2017/02/15/878685_user_512x512.png');
     const [userIMGUp, setuserIMGUp] = useState(null);
     const hiddenFileInput = useRef(null);
-    const [loadSc, setloadSc] = useState(false);
+    // const [loadSc, setloadSc] = useState(false);
 
     const checker = (e, setVal) => { 
         e.preventDefault();
@@ -56,7 +55,7 @@ const setDateBreed = async (e) =>{
     }
 const AddnewPet = () => { 
     console.log(PetName + '\n' + Vitamins + '\n' + PetBDate + '\n' + PetGend + '\n' + PetBreed + '\n' + PetSpec + '\n' + PetsWeight + '\n' + 
-    PetsHeight + '\n' + Deworming + '\n' + AntiRabies + '\n' + VinI + '\n' + VIinI + '\n' + CheckUp)
+    PetsHeight + '\n' + Deworming + '\n' + AntiRabies + '\n' + VinI + '\n' + VIinI + '\n' + CheckUp+ '\n' + userIMGUp)
 }
 
     return (
@@ -104,7 +103,6 @@ const AddnewPet = () => {
                 </div>
             </div>
          <button className='updateBtn newpetupo' onClick={AddnewPet()} >Insert Records</button>
-         <LoadSc Stat = {loadSc}/>
          </div>
         </>
     )
