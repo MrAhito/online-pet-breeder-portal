@@ -54,6 +54,7 @@ function RegUserForm() {
     const [visiPas, setvisiPas] = useState(false);
     const petSHow = () => setshowPet(!showPet);
     const [loadVisi, setloadVisi] = useState(false);
+    const [breeding, setbreeding] = useState(false);
 
     const [petAge, setpetAge] = useState()
     const [FirstName, setFirstName] = useState("");
@@ -132,19 +133,17 @@ function RegUserForm() {
 
         if ( errPName === false && errPBred === false && errPDate === false && errPGend === false && errPSpec === false && errPWeight === false
             && errPHeight === false){
-               
-                
-                // setloadVisi(true)
-                // var a = dpImg, b = petImg;
-                // if(!(userIMGUp === null)){
-                //      a = await uploadImage(userIMGUp);
-                //     console.log("Link user fetch: "  + a);
-                //  }
-                // if(!(petIMGUp === null)){
-                //     b = await uploadImage(petIMGUp);
-                // console.log("Link pet fetch: "  + b);
-                // }
-                // createuser(a, b);
+                setloadVisi(true)
+                var a = dpImg, b = petImg;
+                if(!(userIMGUp === null)){
+                     a = await uploadImage(userIMGUp);
+                    console.log("Link user fetch: "  + a);
+                 }
+                if(!(petIMGUp === null)){
+                    b = await uploadImage(petIMGUp);
+                console.log("Link pet fetch: "  + b);
+                }
+                createuser(a, b);
             }
         }
     
@@ -211,6 +210,8 @@ const createuser = (u, p) => {
                         Gender : PetGend,
                         Breed : PetBreed,
                         Species : PetSpec,
+                        Age : petAge,
+                        Breeding : breeding,
                         Weight : PetsWeight + "(g)",
                         Height : PetsHeight + " (cm)",
                         Deworm : Deworming,
@@ -432,7 +433,7 @@ const DdlHandler= (e) => {
                             <faIcons.FaExclamationCircle></faIcons.FaExclamationCircle></div>
                             <input className='reg_in' type={vin1Type ? 'date' : 'text'} name="txt-PDate" placeholder='Birth Date:' ref={petDateRef} id="txtPBdate"  onFocus={() => {setvin1Type(true)}} onBlur={() => {setvin1Type(false)}}  onChange={ 
                                 (e) =>{checker(e, setPDate, setPBdate)
-                                    setpetAge(dateDiff(e))
+                                    setpetAge(Math.ceil(dateDiff(e)))
                             }} />
                             <div className={errPDate ? 'valida sh' : 'valida'}>
                                 <faIcons.FaExclamationCircle></faIcons.FaExclamationCircle></div>
@@ -448,13 +449,17 @@ const DdlHandler= (e) => {
                             (e) =>{ 
                                 setDateBreed(e);
                                 checker(e, setPSpec, setPetSpec);
-                                console.log(petAge)
                                 if(e.target.value === 'Cat' && petAge < 6){
+                                    setbreeding(false)
                                     alert('Your pet is too young for Breeding')
                                 }else if(e.target.value === 'Dog' && petAge < 6 && PetGend === 'Male'){
+                                    setbreeding(false)
                                     alert('Your pet is too young for Breeding')
                                 }else if(e.target.value === 'Dog' && petAge < 18 & PetGend === 'Female'){
+                                    setbreeding(false)
                                     alert('Your pet is too young for Breeding')
+                                }else{
+                                    setbreeding(true)
                                 }
                             }} >
                             <option value=""  disabled>Species:</option>
