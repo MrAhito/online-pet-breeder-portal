@@ -196,10 +196,11 @@ const createuser = (u, p) => {
                         Height : PetsHeight + " cm",
                     }).then(res => {
                         db.doc("pets/"+res.id).set({PetId : res.id,}, { merge: true })
-                      setloadVisi(false)
-                      alert('New User Successfully Registered')
-                      history.push('/dashboard');
+                        console.log("Pets and User Details inserted")
                 });
+                         history.push('/dashboard');
+                         setloadVisi(false)
+                    alert('New User Successfully Registered')
                 }catch (error) {
                          console.log("Error in creating user info", error);
                 }

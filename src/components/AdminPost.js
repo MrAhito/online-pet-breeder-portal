@@ -3,6 +3,7 @@ import db from '../firebase/firebase'
 import * as cgIcons from 'react-icons/ai'
 import './AdminPost.css'
 import ApprovedPost from './ApprovedPost'
+import LoadSc from './LoadSc.js'
 function AdminPost() {
 
     const [submit, setsubmit] = useState(true)   
@@ -13,6 +14,8 @@ function AdminPost() {
     const [emtd, setemtd] = useState(false)   
     const [Post, setPost] = useState([])   
     const [PostDec, setPostDec] = useState([])   
+    const [ind, setind] = useState('');
+    const [loadVisi, setloadVisi] = useState(false)
 
     useEffect(() => {
     const fetchData = async () => {
@@ -31,6 +34,10 @@ function AdminPost() {
     })
 
     const ApprovePost = (acrt, postid,poserName, photo, post, poserId, poserDp, tag, time) => {
+
+        // console.log(acrt + "\n" +  postid + "\n" + poserName + "\n" +  photo + "\n" +  post + "\n" + poserId + "\n" + poserDp + "\n" + 
+        //  tag + "\n" + time)
+        setloadVisi(true);
          const postRef = db.doc("post/"+acrt+"/post/"+postid);
          setwarn(false)
         postRef.set({
@@ -46,8 +53,9 @@ function AdminPost() {
         }).then(res => {
          db.doc("post/submitted/post/"+postid).delete();
          console.log('Post Successfully Submitted')
-         window.location.reload(false);
-         
+         setloadVisi(false)
+         window.location.reload(false)
+         alert('Post Succesfully ' + acrt)
         });
         
     }
@@ -70,10 +78,10 @@ function AdminPost() {
                         <div className={decline ? 'posttabs on' : 'posttabs'} onClick={(e) => {tabopne(false, false, true)}}>Declined Post</div>
                         </div>
                         <div className={submit ? 'post-wrap' : 'post-wrap hidp'}>
-                        
+                        <LoadSc Stat = {loadVisi} />
                             {Post.map((Posts, index) => (
                                 <div className='divwa' key={index}>
-                                <div className='SPost-wrapper' onClick={(e) => {setwarn(true)}} >
+                                <div className='SPost-wrapper' onClick={(e) => {setwarn(true); setind(index)}} >
                                     <div className='posterInfo'>
                                     <img src={Posts.postedByImg} alt='profile' className='posterDp'></img>
                                     <div className='posterName'>{Posts.postedByName}</div>
@@ -90,12 +98,12 @@ function AdminPost() {
                                      <h1 className='titleWard'>Are you sure you want to approve or decline this post?</h1>
                                      <div className='actBtndiv'>
                                     <div onClick={(e) => 
-                                    {ApprovePost("approved",Posts.postID, Posts.postedByName, Posts.photoURL, Posts.post, Posts.postedBy,
-                                        Posts.postedByImg, Posts.tags, Posts.timestamp )}} 
+                                    {ApprovePost("approved",Post[ind].postID, Post[ind].postedByName, Post[ind].photoURL, Post[ind].post, Post[ind].postedBy,
+                                        Post[ind].postedByImg, Post[ind].tags, Post[ind].timestamp )}} 
                                     className='actBtn apr'><cgIcons.AiOutlineCheck className='iconPos'/><span className='btnosttil'>Approve</span></div>
                                  <div onClick={(e) => 
-                                    {ApprovePost("declined",Posts.postID, Posts.postedByName, Posts.photoURL, Posts.post, Posts.postedBy,
-                                        Posts.postedByImg, Posts.tags, Posts.timestamp )}} 
+                                    {ApprovePost("declined",Post[ind].postID, Post[ind].postedByName, Post[ind].photoURL, Post[ind].post, Post[ind].postedBy,
+                                        Post[ind].postedByImg, Post[ind].tags, Post[ind].timestamp )}} 
                                          className='actBtn dec '><cgIcons.AiOutlineClose className='iconPos'/><span className='btnosttil'>Decline</span></div>
                                  </div>
                                  </div>
