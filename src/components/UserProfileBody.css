@@ -36,7 +36,7 @@
     flex-direction: row;
     width: inherit;
 }
-.UAbtab, .petEditbtn, .updateBtn{
+.UAbtab, .petEditbtn, .updateBtn , .addPetbtn{
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -48,7 +48,7 @@
     transition: 0.2s all ease-in-out;
     cursor: pointer;
 }
-.UAbtab:hover, .pet-info:hover, .petEditbtn:hover, .UAbtab.info, .UAbtab.friend, .UAbtab.post, .UAbtab.pets, .updateBtn:hover{
+.UAbtab:hover, .pet-info:hover, .petEditbtn:hover, .UAbtab.info, .UAbtab.friend, .UAbtab.post, .UAbtab.pets, .updateBtn:hover, .addPetbtn:hover{
     background-color: var(--primaryColor1);
     border-color: var(--primaryColor);
     transition: 0.45s all ease-in-out;
@@ -112,7 +112,7 @@
   padding: .5vh;
   width: 11vw;
 }
-.Wrapper.info, .Wrapper.post,  .Wrapper.friend, .Wrapper.pet{
+.Wrapper.info, .Wrapper.post,  .Wrapper.friend, .Wrapper.pet, .show{
     display: flex;
 }
 .pet-info{
@@ -147,14 +147,16 @@
 .petEditbtn{
     width: 5vw;
     outline: none;
-    font-size: 1.1vw;
+    font-size: .85vw;
     display: flex;
     justify-content: center;
     align-items: center;
     position: absolute;
-    font-weight: 400;
-    margin: -32vh 0 0 52vw;
-    height: 5.75vh;
+    padding: 0;
+    background-color: var(--bodyColor);
+    font-weight: 600;
+    margin: -34vh 0 0 52.3vw;
+    height: 5vh;
 }
 
 .petdettitle{
@@ -230,6 +232,7 @@ align-items: baseline;
     width: 15vw;
     margin-top: 25vw;
     font-size: 1.5vw;
+    background-color: var(--bodyColor);
     font-weight: 600;
 
 }
@@ -250,4 +253,42 @@ align-items: baseline;
 }
 .selecta{
     width: 11.7vw;
+}
+.txtAreVit{
+    resize: none;
+    overflow: auto;
+    outline: none;
+    border: none;
+    font-family: var(--primaryFont);
+    background-color: transparent;
+    font-size: .86vw;
+  padding: .5vh;
+  width: 11vw;
+  display: flex;
+flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.dela{
+    margin-top: -11vw;
+}
+.dela:hover{
+    color: var(--failColor);
+    border-color: var(--failColor);
+}
+.addPetbtn{
+    margin: 0.3vw 0 0 50.5vw;
+    position: absolute;
+    background-color: var(--bodyColor);
+    width: 8vw;
+    height: 3vw;
+    font-family: var(--primaryFont);
+    font-weight: 600;
+font-size: 1.2vw;
+}
+.hid{
+    display: none;
+}
+.newpetupo{
+    margin: 20vw auto 0 2.5vw;
 }

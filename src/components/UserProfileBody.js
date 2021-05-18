@@ -6,6 +6,7 @@ import * as faIcons from 'react-icons/fa'
 import * as mdIcons from 'react-icons/md'
 import './UserProfileBody.css'
 import PetInforma from './PetInforma';
+import NewPet from './NewPet';
  class UserProfileBody extends Component {
    
     constructor() {
@@ -26,6 +27,7 @@ import PetInforma from './PetInforma';
             petInfo:false,
             postInfo:false,
             friendInfo:false,
+            newuser : false,
         }
     }
 
@@ -119,10 +121,17 @@ import PetInforma from './PetInforma';
                     </div>
 
                     <div className={this.state.petInfo ? 'Wrapper pet' : 'Wrapper '}>
+                        <button onClick={(e)=> { this.setState({ newuser : true })}} className='addPetbtn'><Icons.FiPlusCircle/> Add Pet</button> 
                         <h1 className='titleBasic'>Pet Information: </h1>
-                        <PetInforma useID = {this.state.UserID}/>                       
+                        <PetInforma useID = {this.state.UserID}/>     
+                    <div className={this.state.newuser ? 'petEdit-wrapper show' : 'hid'}>
+                    <div className='pet-edit'>
+                        <div className='petEdit-head'>Add New Pet Information</div><div className='closeEdit' onClick={(e)=>{ this.setState({ newuser : false })}}><faIcons.FaWindowClose /></div>
+                        <NewPet useID = {this.state.UserID}/>
                     </div>
 
+                    </div>
+                </div>
             </div>
             </>
         )

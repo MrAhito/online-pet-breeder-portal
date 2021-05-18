@@ -1,6 +1,7 @@
 .userNavCon{
     position: sticky;
     top: 0%;
+    z-index: 10;
     border-bottom: .3vh solid var(--borderColor);
 }
 .navlogo-con, .cs_div, .userIcons{

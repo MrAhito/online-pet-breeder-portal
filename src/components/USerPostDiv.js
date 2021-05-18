@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import * as iIcons from 'react-icons/fi'
-import loadGIF from '../images/loading.gif'
 import { Link } from 'react-router-dom';
 import Select from 'react-select';
 import db, { auth } from '../firebase/firebase'
@@ -9,6 +8,7 @@ import PostIcon from '../images/addFiles.svg'
 import './USerPostDiv.css'
 import Axios from 'axios';
 import ApprovedPost from './ApprovedPost';
+import LoadSc from './LoadSc';
 
 class USerPostDiv extends Component {
     constructor(props) {
@@ -184,12 +184,7 @@ async setData(uids, image, postData){
                                 <span className='btnLabel'>Submit Post</span>
                             </div>
                         </div>
-                        <div className={this.state.loadVisi ? 'loadingPage hide': 'loadingPage'}>
-                        <div className='load-wrapper'>
-                        <img src={loadGIF} alt='loading'/>
-                            <h1 className='loadStat'>Loading...</h1>
-                        </div>
-                        </div>
+                    <LoadSc Stat = {this.state.loadVisi}/>
                 </div>
                 <div onClick={this.hidePost.bind(this)} className={this.state.postStat ? 'blocker hide': 'blocker'}/>
               </div>

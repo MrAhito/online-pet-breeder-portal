@@ -7,6 +7,8 @@
   --secondaryFont: 'Montserrat', sans-serif;
   --primaryFont: 'Nunito', sans-serif;
   --borderColor: #c8c7d1;
+  --succesColor: rgb(17, 161, 17);
+  --failColor: rgb(240, 31, 31);
 }
 
 body {

@@ -4,6 +4,7 @@ import {  useHistory } from "react-router-dom";
 import fireBaseDB, { auth } from '../firebase/firebase';
 import Axios from 'axios'
 import { BreedDataCat, BreedDataDog, BreedDatadefault } from './SelectData';
+import db from '../firebase/firebase';
 
 function RegUserForm() {
     const history = useHistory();
@@ -161,7 +162,7 @@ const createuser = (u, p) => {
          }).then(user  => {
             const uids = auth.currentUser.uid;
             const userRef = fireBaseDB.doc("users/" + uids);
-            const pettRef = fireBaseDB.doc("pets/" + uids);
+            const pettRef = fireBaseDB.collection("pets/");
             const snaps =  userRef.get();
             if (!snaps.exist) {
                 try {
@@ -178,9 +179,8 @@ const createuser = (u, p) => {
                         email : Email,
                         Gender,
                     })
-                    pettRef.set({
+                    pettRef.add({
                         Timestamp : new Date(),
-                        PetId: uids + " - 1",
                         photoURL : p,
                         Name : PetName,
                         Birthdate : PetBDate,
@@ -191,6 +191,9 @@ const createuser = (u, p) => {
                         Species : PetSpec,
                         Weight : PetsWeight + " grams",
                         Height : PetsHeight + " cm",
+                    }).then(res => {
+                        db.doc("pets/"+res.id).set({PetId : res.id,}, { merge: true })
+                        console.log("Pets and User Details inserted")
                     });
                          history.push('/dashboard');
                 }catch (error) {

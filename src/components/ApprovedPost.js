@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import db from '../firebase/firebase'
+import * as cgIcons from 'react-icons/md'
 
 function ApprovedPost() {
 
@@ -8,7 +9,7 @@ function ApprovedPost() {
 
     useEffect(() => {
     const fetchData = async () => {
-      const data = await db.collection("post/approved/post").get()
+      const data = await db.collection("post/approved/post").orderBy('timestamp').get()
       if((data.docs.map(doc => doc.data())).length===0){
         setemts(true)
       }else{setemts(false)}
@@ -29,6 +30,9 @@ function ApprovedPost() {
                 <blockquote className='postDataText'>{Posts.post}</blockquote>
                 <img src={Posts.photoURL} alt=''/>
                 <div className='postTagss'>Tags: {(Posts.tags) + ";"}</div>
+                <div className='actBtndiv'>
+                <div className='actBtn apr'><cgIcons.MdFeedback className='iconPos'/><span className='btnosttil'>Feedback</span></div>
+             </div>
             </div>
             </div>
         ))}

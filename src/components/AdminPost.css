@@ -52,10 +52,11 @@ align-items: center;
 padding: 8vh 0;
 width: 70.3vw;
 margin: auto;
-justify-content: center;
+height: 60vh;
+justify-content: flex-start;
 }
 .divwa{
-width: 39vw;
+width: 33vw;
 margin: auto;
 }
 .SPost-wrapper{
@@ -126,15 +127,15 @@ margin: auto   ;
 }
 
 .apr:hover{
-    border-color:rgb(17, 161, 17);
-    color: rgb(17, 161, 17);
+    border-color:var(--succesColor);
+    color: var(--succesColor);
     border-radius: 1vw;
     background-color: var(--primaryColor1);
     transition: 450ms all ease-in-out;
 }
 .dec:hover{
-    border-color:rgb(240, 31, 31);
-    color: rgb(240, 31, 31);
+    border-color:var(--failColor);
+    color: var(--failColor);
     border-radius: 2vw;
     background-color: var(--primaryColor1);
     transition: 450ms all ease-in-out;
