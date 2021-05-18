@@ -326,3 +326,12 @@ input[type=number] {
 .borderfix{
     margin-right: 0;
 }
+.reghis{
+    margin-top: 2vh;
+    grid-column: 1/5;
+    width: 28vw;
+}
+.regsa{
+    border: 1px solid red;
+    width: 20vw;
+}

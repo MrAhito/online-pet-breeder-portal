@@ -2,8 +2,9 @@ import React, { useRef, useState } from 'react'
 import * as faIcons from 'react-icons/fa'
 import {  useHistory } from "react-router-dom";
 import fireBaseDB, { auth } from '../firebase/firebase';
+import Select from 'react-select'
 import Axios from 'axios'
-import { BreedDataCat, BreedDataDog, BreedDatadefault } from './SelectData';
+import { BreedDataCat, BreedDataDog, BreedDatadefault, PetVitamins } from './SelectData';
 import db from '../firebase/firebase';
 import LoadSc from './LoadSc';
 
@@ -29,7 +30,9 @@ function RegUserForm() {
     const petHeightRef = useRef();
     const hiddenFileInput = useRef(null);
     const hiddenFileInput2 = useRef(null);
-    
+
+    const [userBdate, setuserBdate] = useState(false)
+    const [vin1Type, setvin1Type] = useState(false)
     const [cgend, setcgend] = useState(false);
     const [errFName, setFName] = useState(true);
     const [errLName, setLName] = useState(true);
@@ -52,6 +55,7 @@ function RegUserForm() {
     const petSHow = () => setshowPet(!showPet);
     const [loadVisi, setloadVisi] = useState(false);
 
+    const [petAge, setpetAge] = useState()
     const [FirstName, setFirstName] = useState("");
     const [LastName, setLastName] = useState("");
     const [Address, setAddr] = useState("");
@@ -67,9 +71,15 @@ function RegUserForm() {
     const [PetGend, setPetGend] = useState("");
     const [PetsWeight, setPetsWeight] = useState("");
     const [PetsHeight, setPetsHeight] = useState("");
+    const [Deworming, setDeworming] = useState("");
+    const [VinI, setVinI] = useState("");
+    const [VIinI, setVIinI] = useState("");
+    const [AntiRabies, setAntiRabies] = useState("");
+    const [CheckUp, setCheckUp] = useState("");
+    const [Vitamins, setVitamins] = useState([]);
 
     const [dpImg, setdpImg] = useState('https://www.shareicon.net/data/256x256/2017/02/15/878685_user_512x512.png');
-    const [petImg, setpetImg] = useState('https://res.cloudinary.com/pet-breeding/image/upload/v1620600697/b5arwppmaihcbukxdzin.png');
+    const [petImg, setpetImg] = useState('https://res.cloudinary.com/pet-breeding/image/upload/v1621367507/icon_sqix6i.png');
     const [userIMGUp, setuserIMGUp] = useState(null);
     const [petIMGUp, setpetIMGUp] = useState(null);
 
@@ -90,7 +100,6 @@ function RegUserForm() {
     }
 
     async function signUp (e) {
-        setloadVisi(true)
         const petName = petNameRef.current.value;
         const petDate = petDateRef.current.value;
         const petSpeci = petSpeciRef.current.value;
@@ -123,19 +132,29 @@ function RegUserForm() {
 
         if ( errPName === false && errPBred === false && errPDate === false && errPGend === false && errPSpec === false && errPWeight === false
             && errPHeight === false){
-                var a = dpImg, b = petImg;
-                if(!(userIMGUp === null)){
-                     a = await uploadImage(userIMGUp);
-                    console.log("Link user fetch: "  + a);
-                 }
-                if(!(petIMGUp === null)){
-                    b = await uploadImage(petIMGUp);
-                console.log("Link pet fetch: "  + b);
-                }
-                createuser(a, b);
+               
+                
+                // setloadVisi(true)
+                // var a = dpImg, b = petImg;
+                // if(!(userIMGUp === null)){
+                //      a = await uploadImage(userIMGUp);
+                //     console.log("Link user fetch: "  + a);
+                //  }
+                // if(!(petIMGUp === null)){
+                //     b = await uploadImage(petIMGUp);
+                // console.log("Link pet fetch: "  + b);
+                // }
+                // createuser(a, b);
             }
         }
     
+        const dateDiff =(e) =>{ 
+            const date1 = new Date (e.target.value)
+            const date2 = new Date('05-21-2021')
+            const res = date1 - date2
+            return res/(1000 * 60 * 60 * 24 * 30)
+        }
+
      async  function uploadImage (imgUser) {
              const  formData = new FormData()
              var linking = ''
@@ -192,8 +211,14 @@ const createuser = (u, p) => {
                         Gender : PetGend,
                         Breed : PetBreed,
                         Species : PetSpec,
-                        Weight : PetsWeight + " grams",
-                        Height : PetsHeight + " cm",
+                        Weight : PetsWeight + "(g)",
+                        Height : PetsHeight + " (cm)",
+                        Deworm : Deworming,
+                        VIinI : VIinI,
+                        Vin1 : VinI,
+                        AntiRabies : AntiRabies,
+                        CheckUp : CheckUp,
+                        Vitamins : Vitamins,
                     }).then(res => {
                         db.doc("pets/"+res.id).set({PetId : res.id,}, { merge: true })
                         console.log("Pets and User Details inserted")
@@ -323,6 +348,10 @@ const setDateBreed = (e) =>{
         setbreedData(BreedDataCat)
     }
 }
+
+const DdlHandler= (e) => {
+    setVitamins(Array.isArray(e)? e.map(x => x.label): [])
+}
     return (
         <>
             <form className={showPet ? 'reg-form-c show' : 'reg-form-c'} >
@@ -366,8 +395,8 @@ const setDateBreed = (e) =>{
                             (e) =>{chekCon(e, setCon, setContact)}} />
                         <div className={errCon ? 'valida sh' : 'valida'}>
                             <faIcons.FaExclamationCircle></faIcons.FaExclamationCircle></div>
-                        <input className='reg_in'  type="date" name="txt-Bdate" placeholder='Birth Date:' ref={bdateRef} id="txtBdate" onChange={ 
-                            (e) =>{checker(e, setBday, setBDate)}} />
+                        <input className='reg_in'  type={userBdate ? 'date' : 'text'} name="txt-Bdate" placeholder='Birth Date:' ref={bdateRef} id="txtBdate" onFocus={() => {setuserBdate(true)}} onBlur={() => {setuserBdate(false)}}  onChange={ 
+                            (e) =>{checker(e, setBday, setBDate); }} />
                         <div className={errBday ? 'valida sh' : 'valida'}>
                             <faIcons.FaExclamationCircle></faIcons.FaExclamationCircle></div>
                         <select className='reg_in'  name="txt-Gend" onChange={cGend} id="txtGend" ref={genRef} defaultValue={''} >
@@ -401,15 +430,17 @@ const setDateBreed = (e) =>{
                             (e) =>{checker(e, setPName, setPetName)}}  />
                         <div  className={errPName ? 'valida sh' : 'valida'}>
                             <faIcons.FaExclamationCircle></faIcons.FaExclamationCircle></div>
-                            <input className='reg_in'  type="date" name="txt-PDate" placeholder='Birth Date:' ref={petDateRef} id="txtPBdate" onChange={ 
-                                (e) =>{checker(e, setPDate, setPBdate)}} />
+                            <input className='reg_in' type={vin1Type ? 'date' : 'text'} name="txt-PDate" placeholder='Birth Date:' ref={petDateRef} id="txtPBdate"  onFocus={() => {setvin1Type(true)}} onBlur={() => {setvin1Type(false)}}  onChange={ 
+                                (e) =>{checker(e, setPDate, setPBdate)
+                                    setpetAge(dateDiff(e))
+                            }} />
                             <div className={errPDate ? 'valida sh' : 'valida'}>
                                 <faIcons.FaExclamationCircle></faIcons.FaExclamationCircle></div>
                             <select className='reg_in'  name="txt-Gend" id="txtPGend" ref={petGenderRef}  defaultValue={''} onChange={ 
                                 (e) =>{checker(e, setPGend, setPetGend)}} >
                                 <option className='placeH' value=""  disabled>Gender:</option>
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
                             </select>
                             <div className={errPGend ? 'valida sh' : 'valida'}>
                                 <faIcons.FaExclamationCircle></faIcons.FaExclamationCircle></div>
@@ -417,6 +448,14 @@ const setDateBreed = (e) =>{
                             (e) =>{ 
                                 setDateBreed(e);
                                 checker(e, setPSpec, setPetSpec);
+                                console.log(petAge)
+                                if(e.target.value === 'Cat' && petAge < 6){
+                                    alert('Your pet is too young for Breeding')
+                                }else if(e.target.value === 'Dog' && petAge < 6 && PetGend === 'Male'){
+                                    alert('Your pet is too young for Breeding')
+                                }else if(e.target.value === 'Dog' && petAge < 18 & PetGend === 'Female'){
+                                    alert('Your pet is too young for Breeding')
+                                }
                             }} >
                             <option value=""  disabled>Species:</option>
                             <option value="Dog">Dog</option>
@@ -444,8 +483,17 @@ const setDateBreed = (e) =>{
                             (e) =>{checker(e, setPHeight, setPetsHeight)}} />
                         <div  className={errPHeight ? 'valida sh' : 'valida'}>
                             <faIcons.FaExclamationCircle></faIcons.FaExclamationCircle></div>
-                        <div>
-                    </div>
+                            <div className='petDetails reghis'>
+                            <h3 className='petdettitle'>Health History: </h3>
+                            <div className=' petdeta' ><span className='infoLabel '>Deworming:  </span><input onChange={(e) => {checker(e, setDeworming)}}  type='date'  placeholder='No Records' className='infoVal ediet '/></div>
+                            <div className=' petdeta' ><span className='infoLabel '>5-in-1:  </span><input onChange={(e) => {checker(e, setVinI)}}  type='date'  placeholder="MM/DdaD/YYYY" className='infoVal ediet' /></div>
+                            <div className=' petdeta' ><span className='infoLabel '>6-in-1:  </span><input onChange={(e) => {checker(e, setVIinI)}}  type='date' placeholder='No Records'  className='infoVal ediet' /></div>
+                            <div className=' petdeta' ><span className='infoLabel '>Anti-Rabies:</span><input  onChange={(e) => {checker(e, setAntiRabies)}} type='date' placeholder='No Records'  className='infoVal ediet'/></div>
+                            <div className=' petdeta' ><span className='infoLabel '>CheckUp: </span><input  onChange={(e) => {checker(e, setCheckUp)}}  type='date' placeholder='No Records'  className='infoVal ediet' /></div>
+                            <div className=' petdeta' ><span className='infoLabel '>Vitamins:  </span>
+                                <Select classNamePrefix='Ediet' id='tagSelect' options={PetVitamins} onChange={(e) => {DdlHandler(e)}}  isMulti isSearchable />
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div className="reg-footer petf">
