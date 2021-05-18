@@ -5,6 +5,7 @@ import fireBaseDB, { auth } from '../firebase/firebase';
 import Axios from 'axios'
 import { BreedDataCat, BreedDataDog, BreedDatadefault } from './SelectData';
 import db from '../firebase/firebase';
+import LoadSc from './LoadSc';
 
 function RegUserForm() {
     const history = useHistory();
@@ -49,6 +50,7 @@ function RegUserForm() {
     const [showPet, setshowPet] = useState(true);
     const [visiPas, setvisiPas] = useState(false);
     const petSHow = () => setshowPet(!showPet);
+    const [loadVisi, setloadVisi] = useState(false);
 
     const [FirstName, setFirstName] = useState("");
     const [LastName, setLastName] = useState("");
@@ -88,6 +90,7 @@ function RegUserForm() {
     }
 
     async function signUp (e) {
+        setloadVisi(true)
         const petName = petNameRef.current.value;
         const petDate = petDateRef.current.value;
         const petSpeci = petSpeciRef.current.value;
@@ -193,8 +196,9 @@ const createuser = (u, p) => {
                         Height : PetsHeight + " cm",
                     }).then(res => {
                         db.doc("pets/"+res.id).set({PetId : res.id,}, { merge: true })
-                        console.log("Pets and User Details inserted")
-                    });
+                      setloadVisi(false)
+                      alert('New User Successfully Registered')
+                });
                          history.push('/dashboard');
                 }catch (error) {
                          console.log("Error in creating user info", error);
@@ -451,6 +455,8 @@ const setDateBreed = (e) =>{
                     <div className="termscon">Terms and Conditions</div>
                 </div>
             </form>
+            <LoadSc Stat={loadVisi} />
+
         </>
     )
 }
