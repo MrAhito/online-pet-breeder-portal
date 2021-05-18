@@ -198,8 +198,8 @@ const createuser = (u, p) => {
                         db.doc("pets/"+res.id).set({PetId : res.id,}, { merge: true })
                       setloadVisi(false)
                       alert('New User Successfully Registered')
+                      history.push('/dashboard');
                 });
-                         history.push('/dashboard');
                 }catch (error) {
                          console.log("Error in creating user info", error);
                 }
