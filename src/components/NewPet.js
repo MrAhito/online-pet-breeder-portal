@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useRef, useState } from 'react'
 import Select from 'react-select'
+import * as faIcons from 'react-icons/fa'
 import db from '../firebase/firebase';
 import LoadSc from './LoadSc';
 import { BreedDataCat, BreedDatadefault, BreedDataDog, PetVitamins } from './SelectData'
@@ -93,8 +94,8 @@ const AddnewPet = async () => {
             Vitamins : Vitamins,
         }).then(res => {
             db.doc("pets/"+res.id).set({PetId : res.id,}, { merge: true })
-            console.log("Pet Details inserted")
-            window.location.reload(false)
+            console.log("Pet Details inserted");
+            props.onTitleChange();
             setloadSc(false);
     });
             alert('Records has been Updated');
@@ -119,30 +120,32 @@ async  function uploadImage (imgUser) {
 
     return (
         <>
-        
+        <div className={props.addNew ? 'petEdit-wrapper show' : 'hid'}>
+        <div className='pet-edit'>
+        <div className='petEdit-head'>Add New Pet Information</div><div className='closeEdit' onClick={props.onTitleChange}><faIcons.FaWindowClose /></div>
         <img src={dpImg} onClick={(e) => {hiddenFileInput.current.click();}} className='petProfile' alt='pet'/>
         <input style={{display: 'none'}} type='file'  ref={hiddenFileInput} onChange = {(e) => {onImgChange(e,setdpImg, setuserIMGUp)}} />
         <div className='petEdi-rapper'>
             <div className='petDetails'>
                 <h3 className='petdettitle'>Basic Information: </h3>
-                <div className=' petdeta' ><span className='infoLabel '>Name:<span className='asterisk'>*</span></span><input onChange={(e) => {checker(e, setPetName)}} type='text' placeholder='Name: ' className='infoVal ediet'/></div>
+                <div className=' petdeta' ><span className='infoLabel '>Name:<span className='asterisk'>*</span></span><input defaultValue=''  onChange={(e) => {checker(e, setPetName)}} type='text' placeholder='Name: ' className='infoVal ediet'/></div>
                 <div className=' petdeta' ><span className='infoLabel '>Birthdate:<span className='asterisk'>*</span>  </span><input onBlur={(e) => {checker(e, setPBdate); setpetAge(dateDiff(e));
                         if(dateDiff(e) < 6){ setbreeding(false); alert('Your Pet is Not Eligile for Breeding') }else{setbreeding(true)}
-                    }} type='date'  className='infoVal ediet' /></div>
+                    }} type='date' defaultValue=' '  className='infoVal ediet' /></div>
                 <div className=' petdeta' ><span className='infoLabel '>Gender:<span className='asterisk'>*</span>  </span>
-                <select onChange={(e) => {checker(e, setPetGend)}} defaultValue="" className='infoVal ediet selecta'>
+                <select onChange={(e) => {checker(e, setPetGend)}} defaultValue=" " className='infoVal ediet selecta'>
                     <option value='' disabled>Gender</option>
                     <option value='Male'>Male</option>
                     <option value='Female'>Female</option>
                 </select> </div>
                 <div className=' petdeta' ><span className='infoLabel '>Species:<span className='asterisk'>*</span>  </span>
-                <select onChange={(e) => { checker(e, setPetSpec); setDateBreed(e); }} defaultValue="" className='infoVal ediet selecta'>
+                <select onChange={(e) => { checker(e, setPetSpec); setDateBreed(e); }} defaultValue=" " className='infoVal ediet selecta'>
                 <option value='' disabled>Breed</option>
                     <option value='Dog'>Dog</option>
                     <option value='Cat'>Cat</option>
                 </select></div>
                 <div className=' petdeta' ><span className='infoLabel '>Breed:<span className='asterisk'>*</span>  </span>
-                <select onChange={(e) => {checker(e, setPetBreed)}} className='infoVal ediet selecta'>
+                <select defaultValue=''  onChange={(e) => {checker(e, setPetBreed)}} className='infoVal ediet selecta'>
                 {breedData.map((item, index) => {
                     return (
                         <option key={index} value={item.value}>{item.text}</option>
@@ -154,17 +157,19 @@ async  function uploadImage (imgUser) {
             </div>
             <div className='petDetails'>
                 <h3 className='petdettitle'>Health History: </h3>
-                <div className=' petdeta' ><span className='infoLabel '>Deworming:  </span><input onChange={(e) => {checker(e, setDeworming)}}  type='date'  placeholder='No Records' className='infoVal ediet'/></div>
-                <div className=' petdeta' ><span className='infoLabel '>5-in-1:  </span><input onChange={(e) => {checker(e, setVinI)}}  type='date'  placeholder='No Records' className='infoVal ediet' /></div>
-                <div className=' petdeta' ><span className='infoLabel '>6-in-1:  </span><input onChange={(e) => {checker(e, setVIinI)}}  type='date' placeholder='No Records'  className='infoVal ediet' /></div>
-                <div className=' petdeta' ><span className='infoLabel '>Anti-Rabies:</span><input  onChange={(e) => {checker(e, setAntiRabies)}} type='date' placeholder='No Records'  className='infoVal ediet' /></div>
-                <div className=' petdeta' ><span className='infoLabel '>CheckUp: </span><input  onChange={(e) => {checker(e, setCheckUp)}}  type='date' placeholder='No Records'  className='infoVal ediet' /></div>
+                <div className=' petdeta' ><span className='infoLabel '>Deworming:  </span><input defaultValue='' onChange={(e) => {checker(e, setDeworming)}}  type='date'  placeholder='No Records' className='infoVal ediet'/></div>
+                <div className=' petdeta' ><span className='infoLabel '>5-in-1:  </span><input defaultValue='' onChange={(e) => {checker(e, setVinI)}}  type='date'  placeholder='No Records' className='infoVal ediet' /></div>
+                <div className=' petdeta' ><span className='infoLabel '>6-in-1:  </span><input defaultValue='' onChange={(e) => {checker(e, setVIinI)}}  type='date' placeholder='No Records'  className='infoVal ediet' /></div>
+                <div className=' petdeta' ><span className='infoLabel '>Anti-Rabies:</span><input  defaultValue='' onChange={(e) => {checker(e, setAntiRabies)}} type='date' placeholder='No Records'  className='infoVal ediet' /></div>
+                <div className=' petdeta' ><span className='infoLabel '>CheckUp: </span><input defaultValue=''  onChange={(e) => {checker(e, setCheckUp)}}  type='date' placeholder='No Records'  className='infoVal ediet' /></div>
                 <div className=' petdeta' ><span className='infoLabel '>Vitamins:  </span>
                     <Select classNamePrefix='Ediet' id='tagSelect' options={PetVitamins} onChange={(e) => {DdlHandler(e)}}  isMulti isSearchable />
                 </div>
             </div>
          <button className='updateBtn newpetupo' onClick={(e) => {AddnewPet(e)}} >Insert Records</button>
          <LoadSc Stat = {loadSc}/>
+         </div>
+         </div>
          </div>
         </>
     )

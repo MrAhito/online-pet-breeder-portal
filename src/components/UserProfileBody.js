@@ -80,7 +80,12 @@ import NewPet from './NewPet';
             friendInfo:d,
         })
     }
-    
+    handleTitleChange(){
+        this.setState({
+            newuser:false,
+        })
+    }
+
     componentDidMount(){
         this.getIDuser();
     } 
@@ -124,15 +129,10 @@ import NewPet from './NewPet';
                         <button onClick={(e)=> { this.setState({ newuser : true })}} className='addPetbtn'><Icons.FiPlusCircle/> Add Pet</button> 
                         <h1 className='titleBasic'>Pet Information: </h1>
                         <PetInforma useID = {this.state.UserID}/>     
-                    <div className={this.state.newuser ? 'petEdit-wrapper show' : 'hid'}>
-                    <div className='pet-edit'>
-                        <div className='petEdit-head'>Add New Pet Information</div><div className='closeEdit' onClick={(e)=>{ this.setState({ newuser : false })}}><faIcons.FaWindowClose /></div>
-                        <NewPet useID = {this.state.UserID} firstName={this.state.UserFName} lastName={this.state.UserLName}/>
+                  <NewPet onTitleChange={this.handleTitleChange.bind(this)} addNew = {this.state.newuser} useID = {this.state.UserID} firstName={this.state.UserFName} lastName={this.state.UserLName}/>
                     </div>
 
                     </div>
-                </div>
-            </div>
             </>
         )
     }
