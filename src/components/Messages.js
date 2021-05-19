@@ -24,7 +24,7 @@ import './Messages.css'
     try {
       
       // console.log(this.state.chat)
-      const ref = db.collection('messages').where(`senderID`, `in`, [userId, recieverID] ).orderBy('timestamp');
+      const ref = db.collection('messages').doc('inboxes').collection(recieverID).orderBy('timestamp');
       ref.onSnapshot(ref, snapshop=>{
         console.log(snapshop)
         let chats = [];
@@ -62,7 +62,7 @@ import './Messages.css'
     event.preventDefault();
     this.setState({ writeError: null });
     try {
-      await db.collection("messages").add({
+      await db.collection('messages').doc('inboxes').collection(this.state.resuid).add({
         content: this.state.content,
         timestamp: new Date(),
         uid: this.state.user.uid,
