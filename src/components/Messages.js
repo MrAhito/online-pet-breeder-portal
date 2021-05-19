@@ -19,11 +19,12 @@ import './Messages.css'
   async componentDidMount() {
 
         const recieverID =  (window.location.pathname).substring(10, 50);
+        const userId =   this.state.user.uid 
         this.setState({ readError: null, resuid: recieverID, });
     try {
       
       // console.log(this.state.chat)
-      const ref = db.collection('messages').where(`senderID`, `==`, this.state.user.uid ).where(`recieverID`, `==`,(window.location.pathname).substring(10, 50)).orderBy('timestamp');
+      const ref = db.collection('messages').where(`senderID`, `in`, [userId, recieverID] ).orderBy('timestamp');
       ref.onSnapshot(ref, snapshop=>{
         console.log(snapshop)
         let chats = [];
@@ -75,21 +76,12 @@ import './Messages.css'
     }
   }
 
-  checkifsender(uid){
-    if(uid === this.state.user.uid){
-      this.setState({ senderType : true })
-    }else{
-      this.setState({ senderType: false })
-    }
-  }
-
   render() {
   return (
     <div>
     <div className="chats">
       {this.state.chats.map(chat => {
-        return <div className={chat.uid === this.state.user.uid ? 'chat sender' : 'chat reciever'} key={chat.timestamp}>
-        Mesage: {chat.content} Time: {new Date(chat.timestamp * 125).toISOString().replace('T', ' ').substring(10, 19)}</div>
+        return <div className={this.state.senderType ? 'chat sender' : 'chat reciever'} key={chat.timestamp}>Mesage: {chat.content} Time: {new Date(chat.timestamp * 125).toISOString().replace('T', ' ').substring(10, 19)}</div>
       })}
     </div>
     
