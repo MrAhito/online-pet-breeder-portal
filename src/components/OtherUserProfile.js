@@ -6,6 +6,7 @@ import * as faIcons from 'react-icons/fa'
 import * as mdIcons from 'react-icons/md'
 import './UserProfileBody.css'
 import OtherPetInforma from './OtherPetInforma';
+import UserPostings from './UserPostings';
 // import PetInforma from './PetInforma';
 // import NewPet from './NewPet';
  class OtherUserProfile extends Component {
@@ -120,7 +121,7 @@ import OtherPetInforma from './OtherPetInforma';
                     </div>
 
                     <div className={this.state.postInfo ? 'Wrapper post' : 'Wrapper '}>
-                    awd
+                    <UserPostings uids ={this.state.UserID} />
                     </div>
 
 

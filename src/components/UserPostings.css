@@ -1,0 +1,15 @@
+.posting{
+    width: 100%;
+    display: flex;   
+    margin: auto;
+    height: 45vw;
+    flex-direction: row;
+    justify-content:flex-start;
+    align-items: center;
+    overflow-y: hidden;
+    overflow-x: scroll;
+}   
+.imdad{
+    padding:0 12vw;
+    margin :0 5vw;
+}

@@ -7,6 +7,7 @@ import * as mdIcons from 'react-icons/md'
 import './UserProfileBody.css'
 import PetInforma from './PetInforma';
 import NewPet from './NewPet';
+import UserPostings from './UserPostings';
  class UserProfileBody extends Component {
    
     constructor() {
@@ -98,9 +99,9 @@ import NewPet from './NewPet';
                     <p className='usernames'>{this.state.UserFName}  {this.state.UserLName}</p>
                     <div className='userTabs'>
                         <div className={this.state.userInfo ? 'UAbtab info' : 'UAbtab'} title='About' onClick={(e) => {this.handleTabClick(true, false, false, false) }}><Icons.FiInfo className='iconTab' /><span className='nameTab'>About</span></div>
-                        <div className={this.state.friendInfo ? 'UAbtab friend' : 'UAbtab'} title='Friends'  onClick={(e) => {this.handleTabClick(false, false, false,true) }}><mdIcons.MdPeople className='iconTab' /><span className='nameTab'>Friends</span></div>
                         <div className={this.state.postInfo ? 'UAbtab post' : 'UAbtab'} title='Post' onClick={(e) => {this.handleTabClick(false, false, true, false) }}><aiIcons.CgFileDocument className='iconTab' /><span className='nameTab'>Post</span></div>
                         <div className={this.state.petInfo ? 'UAbtab pets' : 'UAbtab'} title='Pets' onClick={(e) => {this.handleTabClick(false,true, false, false) }}><mdIcons.MdPets className='iconTab' /><span className='nameTab'>Pets</span></div>
+                        <div className={this.state.friendInfo ? 'UAbtab friend' : 'UAbtab'} title='Friends'  onClick={(e) => {this.handleTabClick(false, false, false,true) }}><mdIcons.MdMessage className='iconTab' /><span className='nameTab'>Messages</span></div>
                     </div>
                     <div className={this.state.userInfo ? 'Wrapper info' : 'Wrapper '}>
                         <div className='basicInfo'>
@@ -118,7 +119,7 @@ import NewPet from './NewPet';
                     </div>
 
                     <div className={this.state.postInfo ? 'Wrapper post' : 'Wrapper '}>
-                    awd
+                    <UserPostings uids ={this.state.UserID} />
                     </div>
 
                     <div className={this.state.friendInfo ? 'Wrapper friend' : 'Wrapper '}>

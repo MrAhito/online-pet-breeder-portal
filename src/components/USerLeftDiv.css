@@ -15,7 +15,7 @@
 }
 .OLList{
     cursor: pointer;
-    height: 17vw;
+    height: 15vw;
     overflow-y: scroll;
     overflow-x: hidden;
     padding: 1vw;
@@ -62,7 +62,7 @@
     font-size: 1.1vw;
 }
 .offl{
-    height: 14vw;
+    height: 15vw;
 }
 .ogli{
     color: var(--failColor);
