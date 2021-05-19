@@ -81,7 +81,7 @@ import './Messages.css'
     <div>
     <div className="chats">
       {this.state.chats.map(chat => {
-        return <div className={this.state.senderType ? 'chat sender' : 'chat reciever'} key={chat.timestamp}>Mesage: {chat.content} Time: {new Date(chat.timestamp * 125).toISOString().replace('T', ' ').substring(10, 19)}</div>
+        return <div className={this.state.senderType === chat.uid ? 'chat sender' : 'chat reciever'} key={chat.timestamp}>Mesage: {chat.content} Time: {new Date(chat.timestamp * 125).toISOString().replace('T', ' ').substring(10, 19)}</div>
       })}
     </div>
     
