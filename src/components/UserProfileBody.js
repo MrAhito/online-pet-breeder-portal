@@ -8,6 +8,7 @@ import './UserProfileBody.css'
 import PetInforma from './PetInforma';
 import NewPet from './NewPet';
 import UserPostings from './UserPostings';
+import { Link } from 'react-router-dom';
  class UserProfileBody extends Component {
    
     constructor() {
@@ -27,7 +28,6 @@ import UserPostings from './UserPostings';
             userInfo:true,
             petInfo:false,
             postInfo:false,
-            friendInfo:false,
             newuser : false,
         }
     }
@@ -101,7 +101,14 @@ import UserPostings from './UserPostings';
                         <div className={this.state.userInfo ? 'UAbtab info' : 'UAbtab'} title='About' onClick={(e) => {this.handleTabClick(true, false, false, false) }}><Icons.FiInfo className='iconTab' /><span className='nameTab'>About</span></div>
                         <div className={this.state.postInfo ? 'UAbtab post' : 'UAbtab'} title='Post' onClick={(e) => {this.handleTabClick(false, false, true, false) }}><aiIcons.CgFileDocument className='iconTab' /><span className='nameTab'>Post</span></div>
                         <div className={this.state.petInfo ? 'UAbtab pets' : 'UAbtab'} title='Pets' onClick={(e) => {this.handleTabClick(false,true, false, false) }}><mdIcons.MdPets className='iconTab' /><span className='nameTab'>Pets</span></div>
-                        <div className={this.state.friendInfo ? 'UAbtab friend' : 'UAbtab'} title='Friends'  onClick={(e) => {this.handleTabClick(false, false, false,true) }}><mdIcons.MdMessage className='iconTab' /><span className='nameTab'>Messages</span></div>
+                        <Link to={{
+                        pathname : '/messages', 
+                        state: {
+                          uid: this.state.UserID,
+                        },
+                    }} className={this.state.friendInfo ? 'UAbtab friend' : 'UAbtab'} title='Messages'><mdIcons.MdMessage className='iconTab' /><span className='nameTab'>Messages</span></Link>
+                    
+                    
                     </div>
                     <div className={this.state.userInfo ? 'Wrapper info' : 'Wrapper '}>
                         <div className='basicInfo'>
@@ -122,9 +129,6 @@ import UserPostings from './UserPostings';
                     <UserPostings uids ={this.state.UserID} />
                     </div>
 
-                    <div className={this.state.friendInfo ? 'Wrapper friend' : 'Wrapper '}>
-                    ad
-                    </div>
 
                     <div className={this.state.petInfo ? 'Wrapper pet' : 'Wrapper '}>
                         <button onClick={(e)=> { this.setState({ newuser : true })}} className='addPetbtn'><Icons.FiPlusCircle/> Add Pet</button> 

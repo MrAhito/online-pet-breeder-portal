@@ -3,6 +3,7 @@
     display: flex;   
     margin: auto;
     height: 45vw;
+    margin: -2vw auto 2vw auto;
     flex-direction: row;
     justify-content:flex-start;
     align-items: center;
@@ -10,6 +11,5 @@
     overflow-x: scroll;
 }   
 .imdad{
-    padding:0 12vw;
-    margin :0 5vw;
+    padding:0  13vw;
 }

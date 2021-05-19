@@ -7,6 +7,7 @@ import * as mdIcons from 'react-icons/md'
 import './UserProfileBody.css'
 import OtherPetInforma from './OtherPetInforma';
 import UserPostings from './UserPostings';
+import { Link } from 'react-router-dom';
 // import PetInforma from './PetInforma';
 // import NewPet from './NewPet';
  class OtherUserProfile extends Component {
@@ -89,7 +90,6 @@ import UserPostings from './UserPostings';
     }
 
     componentDidMount(){
-        
         this.getIDuser();
     } 
     render() {
@@ -103,7 +103,12 @@ import UserPostings from './UserPostings';
                         <div className={this.state.userInfo ? 'UAbtab info' : 'UAbtab'} title='About' onClick={(e) => {this.handleTabClick(true, false, false, false) }}><Icons.FiInfo className='iconTab' /><span className='nameTab'>About</span></div>
                         <div className={this.state.postInfo ? 'UAbtab post' : 'UAbtab'} title='Post' onClick={(e) => {this.handleTabClick(false, false, true, false) }}><aiIcons.CgFileDocument className='iconTab' /><span className='nameTab'>Post</span></div>
                         <div className={this.state.petInfo ? 'UAbtab pets' : 'UAbtab'} title='Pets' onClick={(e) => {this.handleTabClick(false,true, false, false) }}><mdIcons.MdPets className='iconTab' /><span className='nameTab'>Pets</span></div>
-                        <div className={this.state.messageInfo ? 'UAbtab friend' : 'UAbtab'} title='Messages'  onClick={(e) => {this.handleTabClick(false, false, false,true) }}><mdIcons.MdMessage className='iconTab' /><span className='nameTab'>Messages</span></div>
+                        <Link to={{
+                            pathname: `/messages/${this.state.UserID}`, 
+                            state: {
+                              uid: this.state.UserID,
+                            },
+                        }} className={this.state.friendInfo ? 'UAbtab friend' : 'UAbtab'} title='Messages'><mdIcons.MdMessage className='iconTab' /><span className='nameTab'>Messages</span></Link>
                     </div>
                     <div className={this.state.userInfo ? 'Wrapper info' : 'Wrapper '}>
                         <div className='basicInfo'>

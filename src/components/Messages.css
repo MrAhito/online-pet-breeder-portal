@@ -1,0 +1,84 @@
+.chats{
+    max-height: 78vh;
+    height: 78vh;
+    display: flex;
+    width: 50vw;
+    box-sizing: border-box;
+font-family: var(--primaryFont);
+padding: 1.5vw;
+flex-direction: column;
+    border: 1px solid var(--borderColor);
+    justify-content: flex-start;
+    align-items: flex-end;
+    margin: 1vh auto 0 auto;
+overflow: auto;
+}
+.chat{
+    font-size: 2.1vh;
+    cursor: pointer;
+    display: flex;
+    margin: 1vh 0;
+    flex-direction:column;
+    font-weight: 600;
+    transition: 450ms all ease-in-out;
+    padding: 2vh 2.5vh;
+}
+.sender{
+    background-color: var(--primaryColor);
+    border-radius:  1vw 1vw 0 1vw;
+}
+.reciever{
+    display: flex;
+    align-self: flex-start;
+    border-radius:  1vw 1vw 1vw 0;
+    right: 0;
+    background-color:rgb(185, 106, 146);
+}
+.chat:hover{
+    background-color: rgba(44, 43, 43, 0.24);
+    transition: 450ms all ease-in-out;
+}
+.formmessage{
+    width: 50vw;
+    justify-content: center;
+    flex-direction: row;
+    margin: 0 auto auto;
+    display: flex;
+}
+.InputMessage{
+font-size: 1.1vw;
+padding: 1.5vh 2vh;
+border: .35vh solid var(--borderColor);
+border-radius: 2vh;
+margin: .2vh 1vw;
+width: 75%;
+outline: none;
+transition: 450ms all ease-in-out;
+}
+.InputMessage:hover{
+background-color: rgba(153, 153, 153, .1);
+transition: 450ms all ease-in-out;
+}
+.brn-messafe{
+    width: 25%;
+    display: flex;
+    flex-direction: row;
+    font-size: 1.5vw;
+    align-items: center;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--tertiaryColor);
+    border: .15vw solid var(--borderColor);
+    justify-content: center;
+    padding: .5vw 1vw;
+    margin-right: 1.5vw;
+    transition: 0.2s all ease-in-out;
+    cursor: pointer;
+}
+.brn-messafe:hover{
+background-color: var(--primaryColor1);
+border-color: var(--primaryColor);
+transition: 0.45s all ease-in-out;
+border-radius: .7vw;
+color: var(--tertiaryColor);
+}

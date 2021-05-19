@@ -41,6 +41,8 @@
     flex-direction: row;
     align-items: center;
     width: 7vw;
+    text-decoration: none;
+    color: var(--tertiaryColor);
     border: .15vw solid var(--borderColor);
     justify-content: center;
     padding: .5vw 1vw;

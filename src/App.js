@@ -10,10 +10,10 @@ import Dashboard from './pages/Dashboard';
 import ProfileUser from './pages/ProfileUser';
 import Admin from './pages/Admin';
 import AdmPostPage from './pages/AdmPostPage';
-import Messages from './pages/Messages';
 import { auth } from './firebase/firebase';
 import './App.css'
 import OtherUser from './pages/OtherUser';
+import MessagesPage from './pages/MessagesPage';
 
 function PublicRoute ({ component: Component, authenticated, ...rest }) {
   return (
@@ -70,11 +70,15 @@ render() {
         <Route exact path="/" component={ HomePage }></Route>
         <PrivateRoute path="/dashboard" authenticated={this.state.authenticated} component={Dashboard}></PrivateRoute>
         <PrivateRoute path="/userprofile" authenticated={this.state.authenticated} component={ProfileUser}></PrivateRoute>
-        <PrivateRoute path="/messages" authenticated={this.state.authenticated} component={Messages}></PrivateRoute>
         <PrivateRoute path="/users/" authenticated={this.state.authenticated} component={OtherUser}></PrivateRoute>
         <PrivateRoute path="/users/:id" authenticated={this.state.authenticated} component={OtherUser}></PrivateRoute>
+        <PrivateRoute path="/messages/:id" authenticated={this.state.authenticated} component={MessagesPage}></PrivateRoute>
         <PublicRoute path="/admin" authenticated={this.state.authenticated} component={Admin}></PublicRoute>
         <PublicRoute path="/admin/post" authenticated={this.state.authenticated} component={AdmPostPage}></PublicRoute>
+       { // <Route path="/:handle">
+        //              <MessagesPage/>
+        //             </Route>
+       }
       </Switch>
     </Router>
     )

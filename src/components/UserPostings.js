@@ -38,10 +38,10 @@ function UserPostings(props) {
         <div className='posting'>
 
         {Post.map((Posts, index) => (
-            <div className='divwa postinSub' key={index}>
-            <div className='SPost-wrapper adadad' >
+            <div className='divwa imdad' key={index}>
+            <div className='SPost-wrapper ' >
                 <div className='posterInfo'>
-                <img src={Posts.postedByImg} alt='profile' className='posterDp imdad'></img>
+                <img src={Posts.postedByImg} alt='profile' className='posterDp '></img>
                 <div className='posterName'>{Posts.postedByName}</div>
                 <p className='posttime'>{new Date((Posts.timestamp.seconds)*1000.0177648).toUTCString()}</p>
                 </div>
@@ -96,8 +96,8 @@ function UserPostings(props) {
         <div className='posting'>
 
         {PostDec.map((Posts, index) => (
-            <div className='divwa postinSub' key={index}>
-            <div className='SPost-wrapper adada' >
+            <div className='divwa imdad' key={index}>
+            <div className='SPost-wrapper ' >
                 <div className='posterInfo'>
                 <img src={Posts.postedByImg} alt='profile' className='posterDp'></img>
                 <div className='posterName'>{Posts.postedByName}</div>
