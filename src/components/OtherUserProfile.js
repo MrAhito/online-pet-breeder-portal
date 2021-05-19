@@ -5,13 +5,13 @@ import * as Icons from 'react-icons/fi'
 import * as faIcons from 'react-icons/fa'
 import * as mdIcons from 'react-icons/md'
 import './UserProfileBody.css'
+import OtherPetInforma from './OtherPetInforma';
 // import PetInforma from './PetInforma';
 // import NewPet from './NewPet';
  class OtherUserProfile extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            // user: null,
             UserFName: '',
             UserLName: '',
             ProfilePic: '',
@@ -26,7 +26,7 @@ import './UserProfileBody.css'
             userInfo:true,
             petInfo:false,
             postInfo:false,
-            friendInfo:false,
+            messageInfo:false,
             newuser : false,
         }
     }
@@ -63,7 +63,8 @@ import './UserProfileBody.css'
           try{
        auth.onAuthStateChanged(user => {
            if(!( user === null)){
-            const ids = user.uid
+            const a = (window.location.pathname).substring(7, 50)
+            const ids = a
            this.getDoc(db, ids);
                 }
             }) 
@@ -87,13 +88,7 @@ import './UserProfileBody.css'
     }
 
     componentDidMount(){
-    //     const { fromNotifications } = this.props.location.state
-    // const { handle } = this.props.match.params
         
-    //     fetch(`https://api.twitter.com/user/${handle}`)
-    //   .then((user) => {
-    //     this.setState(() => ({ user }))
-    //   });
         this.getIDuser();
     } 
     render() {
@@ -105,9 +100,9 @@ import './UserProfileBody.css'
                     <p className='usernames'>{this.state.UserFName}  {this.state.UserLName}</p>
                     <div className='userTabs'>
                         <div className={this.state.userInfo ? 'UAbtab info' : 'UAbtab'} title='About' onClick={(e) => {this.handleTabClick(true, false, false, false) }}><Icons.FiInfo className='iconTab' /><span className='nameTab'>About</span></div>
-                        <div className={this.state.friendInfo ? 'UAbtab friend' : 'UAbtab'} title='Friends'  onClick={(e) => {this.handleTabClick(false, false, false,true) }}><mdIcons.MdPeople className='iconTab' /><span className='nameTab'>Friends</span></div>
                         <div className={this.state.postInfo ? 'UAbtab post' : 'UAbtab'} title='Post' onClick={(e) => {this.handleTabClick(false, false, true, false) }}><aiIcons.CgFileDocument className='iconTab' /><span className='nameTab'>Post</span></div>
                         <div className={this.state.petInfo ? 'UAbtab pets' : 'UAbtab'} title='Pets' onClick={(e) => {this.handleTabClick(false,true, false, false) }}><mdIcons.MdPets className='iconTab' /><span className='nameTab'>Pets</span></div>
+                        <div className={this.state.messageInfo ? 'UAbtab friend' : 'UAbtab'} title='Messages'  onClick={(e) => {this.handleTabClick(false, false, false,true) }}><mdIcons.MdMessage className='iconTab' /><span className='nameTab'>Messages</span></div>
                     </div>
                     <div className={this.state.userInfo ? 'Wrapper info' : 'Wrapper '}>
                         <div className='basicInfo'>
@@ -128,21 +123,12 @@ import './UserProfileBody.css'
                     awd
                     </div>
 
-                    <div className={this.state.friendInfo ? 'Wrapper friend' : 'Wrapper '}>
-                    ad
-                    </div>
 
-                  {
-                //         <div className={this.state.petInfo ? 'Wrapper pet' : 'Wrapper '}>
-                //         <button onClick={(e)=> { this.setState({ newuser : true })}} className='addPetbtn'><Icons.FiPlusCircle/> Add Pet</button> 
-                //         <h1 className='titleBasic'>Pet Information: </h1>
-                //         // <PetInforma useID = {this.state.UserID}/>     
-                //   <NewPet onTitleChange={this.handleTitleChange.bind(this)} addNew = {this.state.newuser} useID = {this.state.UserID} firstName={this.state.UserFName} lastName={this.state.UserLName}/>
-                //     </div>
-
-                //     </div>
-                }
-                    </div>
+                        <div className={this.state.petInfo ? 'Wrapper pet' : 'Wrapper '}>
+                        <h1 className='titleBasic'>Pet Information: </h1>
+                        <OtherPetInforma useID = {this.state.UserID}/>     
+                        </div>
+                        </div>
             </>
         )
     }

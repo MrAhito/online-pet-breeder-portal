@@ -13,13 +13,11 @@ function OfflineUsers() {
         }
         fetchData()
         }, [])
-    const toUserInfo = () => {
-
-        }
     return (
         <>
         {onLine.map((users, index) => (
-            <Link to='/user' onClick={toUserInfo()} key={index} className='online offle'>
+            <Link to={{ pathname: `/users/${users.uid}`, state: users.uid }} key={index} className='online offle'>
+
                 <Icons.FaDotCircle className='OLIcon ogli'/>
                 <img  className='oLImg' alt=''src={users.photoURL} />
                 <div className='oLUser'>{users.Firstname + " " +users.Lastname}</div>
