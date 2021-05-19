@@ -127,7 +127,7 @@ import NewPet from './NewPet';
                     <div className={this.state.newuser ? 'petEdit-wrapper show' : 'hid'}>
                     <div className='pet-edit'>
                         <div className='petEdit-head'>Add New Pet Information</div><div className='closeEdit' onClick={(e)=>{ this.setState({ newuser : false })}}><faIcons.FaWindowClose /></div>
-                        <NewPet useID = {this.state.UserID}/>
+                        <NewPet useID = {this.state.UserID} firstName={this.state.UserFName} lastName={this.state.UserLName}/>
                     </div>
 
                     </div>

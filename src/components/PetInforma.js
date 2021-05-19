@@ -91,23 +91,30 @@ useEffect (() => {
         return inde;
    }
 
-    const EditpetData = async (e) => {
+    const EditpetData = async (e, photo, petID, name, bday, gender, spec, bred, hei,wei, worm,vini, viini, antir, chec, vit) => {
         console.log(e.target.value)
         if(e.target.value === undefined){
             return;
         }else{
-            setDateBreed();
             await getpetindex(e);
             setpetEdit(true);
+            defaultvaluehandler(photo, petID, name, bday, gender, spec, bred, hei,wei, worm,vini, viini, antir, chec, vit)
         }
+}
+
+const deletePet=(id)=>{
+    db.collection('pets').doc(id).delete();
+    alert('Pet Info Successfully Deleted')
 
 }
+
 const checker = (e, setVal) => { 
     e.preventDefault();
     setVal(e.target.value);
 }
 
 const defaultvaluehandler = async (photo, petID, name, bday, gender, spec, bred, hei,wei, worm,vini, viini, antir, chec, vit) => {
+    try{
     setPetids(petID);
     setdpImg(photo);
     if(PetName.replace(/\s/g, "").length <= 0 || PetsHeight.replace(/\s/g, "").length <= 0 || PetBDate.replace(/\s/g, "").length <= 0 || 
@@ -127,6 +134,7 @@ const defaultvaluehandler = async (photo, petID, name, bday, gender, spec, bred,
     if (CheckUp.replace(/\s/g, "").length <= 0){if(chec === undefined){setCheckUp("No Records")}else{setCheckUp(chec);}}
     if (Vitamins.length <= 0){if(worm === undefined){setVitamins("No Records")}else{setVitamins(vit);}}
     }
+}catch(error){console.log(error)}
    
 }
 
@@ -176,6 +184,7 @@ const UpdateRecords = async () => {
                         <h3 className='petdettitle'>Basic Information: </h3>
                         <div className=' petdeta' ><span className='infoLabel '>Name:  </span><input readOnly placeholder='No Records' className='infoVal ' value={petdata.Name}/></div>
                         <div className=' petdeta' ><span className='infoLabel '>Birthdate:  </span><input readOnly placeholder='No Records' className='infoVal ' value={petdata.Birthdate}/></div>
+                        <div className=' petdeta' ><span className='infoLabel '>Age:  </span><input readOnly placeholder='No Records' className='infoVal ' value={petdata.Age + ' month(s)'}/></div>
                         <div className=' petdeta' ><span className='infoLabel '>Gender:  </span><input readOnly placeholder='No Records' className='infoVal ' value={petdata.Gender}/></div>
                         <div className=' petdeta' ><span className='infoLabel '>Species:  </span><input readOnly placeholder='No Records' className='infoVal ' value={petdata.Species}/></div>
                         <div className=' petdeta' ><span className='infoLabel '>Breed:  </span><input readOnly placeholder='No Records' className='infoVal ' value={petdata.Breed}/></div>
@@ -183,7 +192,9 @@ const UpdateRecords = async () => {
                         <div className=' petdeta' ><span className='infoLabel '>Height:  </span><input readOnly placeholder='No Records' className='infoVal ' value={petdata.Height}/></div>
                     </div>
                     <div className='petDetails'>
-                        <h3 className='petdettitle'>Health History: </h3>
+                    <div className=' petdeta' ><h3 className='petdettitle'>Breedable: </h3><input readOnly placeholder='No Records' className='infoVal ' value={petdata.Breeding}/></div>
+                    
+                    <h3 className='petdettitle'>Health History: </h3>
                         <div className=' petdeta' ><span className='infoLabel '>Deworming:  </span><input readOnly placeholder='No Records' className='infoVal ' value={petdata.Deworm}/></div>
                         <div className=' petdeta' ><span className='infoLabel '>5-in-1:  </span><input readOnly placeholder='No Records' className='infoVal ' value={petdata.Vin1}/></div>
                         <div className=' petdeta' ><span className='infoLabel '>6-in-1:  </span><input readOnly placeholder='No Records' className='infoVal ' value={petdata.VIinI}/></div>
@@ -191,15 +202,17 @@ const UpdateRecords = async () => {
                         <div className=' petdeta' ><span className='infoLabel '>CheckUp: </span><input readOnly placeholder='No Records' className='infoVal ' value={petdata.CheckUp}/></div>
                         <div className=' petdeta' ><span className='infoLabel '>Vitamins:  </span><textarea readOnly placeholder='No Records' className='txtAreVit ' value={petdata.Vitamins}/></div>
                     </div>
-                <button type='button' value={index} onClick={(e) => {EditpetData(e); 
-                    defaultvaluehandler(Pets[ind].photoURL, Pets[ind].PetId, Pets[ind].Name, Pets[ind].Birthdate, Pets[ind].Gender, 
-                        Pets[ind].Species, Pets[ind].Breed, Pets[ind].Height, Pets[ind].Weight, Pets[ind].Deworm, 
-                        Pets[ind].Vin1, Pets[ind].Vin1, Pets[ind].AntiRabies, Pets[ind].CheckUp, Pets[ind].Vitamins)}} 
-                        className='petEditbtn'><Icons.FaEdit/>Edit</button>
-                <button type='button' value={index} onClick={(e) => {}} 
+                <button type='button' value={index} onClick={ async (e) => {
+                    EditpetData(e, Pets[index].photoURL, Pets[index].PetId, Pets[index].Name, Pets[index].Birthdate, Pets[index].Gender, 
+                        Pets[index].Species, Pets[index].Breed, Pets[index].Height, Pets[index].Weight, Pets[index].Deworm, 
+                        Pets[index].Vin1, Pets[index].Vin1, Pets[index].AntiRabies, Pets[index].CheckUp, Pets[index].Vitamins)
+                    }} className='petEditbtn'><Icons.FaEdit/>Edit</button>
+                <button type='button' value={index} onClick={(e) => {deletePet(Pets[index].PetId)}} 
                                 className='petEditbtn dela'><Icons.FaTrashAlt/>Delete</button>
-                <div className={petEdit ? 'petEdit-wrapper show' : 'petEdit-wrapper'}>
 
+
+
+                <div className={petEdit ? 'petEdit-wrapper show' : 'petEdit-wrapper'}>
                 <div className='pet-edit'>
                 <div className='petEdit-head'>Edit Pet Information</div><div className='closeEdit' onClick={(e)=>{setpetEdit(false)}}><Icons.FaWindowClose /></div>
                 <img src={dpImg} onClick={(e) => {hiddenFileInput.current.click();}} className='petProfile' alt='pet'/>

@@ -99,7 +99,10 @@ function RegUserForm() {
             setGen(false);
         }
     }
-
+    const checkerda = (e, setVal) => { 
+        e.preventDefault();
+        setVal(e.target.value);
+    }
     async function signUp (e) {
         const petName = petNameRef.current.value;
         const petDate = petDateRef.current.value;
@@ -431,9 +434,14 @@ const DdlHandler= (e) => {
                             (e) =>{checker(e, setPName, setPetName)}}  />
                         <div  className={errPName ? 'valida sh' : 'valida'}>
                             <faIcons.FaExclamationCircle></faIcons.FaExclamationCircle></div>
-                            <input className='reg_in' type={vin1Type ? 'date' : 'text'} name="txt-PDate" placeholder='Birth Date:' ref={petDateRef} id="txtPBdate"  onFocus={() => {setvin1Type(true)}} onBlur={() => {setvin1Type(false)}}  onChange={ 
-                                (e) =>{checker(e, setPDate, setPBdate)
-                                    setpetAge(Math.ceil(dateDiff(e)))
+                            <input className='reg_in' type={vin1Type ? 'date' : 'text'} name="txt-PDate" placeholder='Birth Date:' ref={petDateRef} id="txtPBdate"  onFocus={() => {setvin1Type(true)}} onBlur={(e) => {
+                                setvin1Type(false);
+                                checker(e, setPDate, setPBdate);
+                                setpetAge(Math.ceil(dateDiff(e)))
+                                if(e.target.value < 6){
+                                    setbreeding(false)
+                                    alert('Your Pet is not Eligible for Breeding')
+                                    }
                             }} />
                             <div className={errPDate ? 'valida sh' : 'valida'}>
                                 <faIcons.FaExclamationCircle></faIcons.FaExclamationCircle></div>
@@ -449,18 +457,18 @@ const DdlHandler= (e) => {
                             (e) =>{ 
                                 setDateBreed(e);
                                 checker(e, setPSpec, setPetSpec);
-                                if(e.target.value === 'Cat' && petAge < 6){
-                                    setbreeding(false)
-                                    alert('Your pet is too young for Breeding')
-                                }else if(e.target.value === 'Dog' && petAge < 6 && PetGend === 'Male'){
-                                    setbreeding(false)
-                                    alert('Your pet is too young for Breeding')
-                                }else if(e.target.value === 'Dog' && petAge < 18 & PetGend === 'Female'){
-                                    setbreeding(false)
-                                    alert('Your pet is too young for Breeding')
-                                }else{
-                                    setbreeding(true)
-                                }
+                                // if(e.target.value === 'Cat' && petAge < 6){
+                                //     setbreeding(false)
+                                //     alert('Your pet is too young for Breeding')
+                                // }else if(e.target.value === 'Dog' && petAge < 6 && PetGend === 'Male'){
+                                //     setbreeding(false)
+                                //     alert('Your pet is too young for Breeding')
+                                // }else if(e.target.value === 'Dog' && petAge < 18 & PetGend === 'Female'){
+                                //     setbreeding(false)
+                                //     alert('Your pet is too young for Breeding')
+                                // }else{
+                                //     setbreeding(true)
+                                // }
                             }} >
                             <option value=""  disabled>Species:</option>
                             <option value="Dog">Dog</option>
@@ -490,11 +498,11 @@ const DdlHandler= (e) => {
                             <faIcons.FaExclamationCircle></faIcons.FaExclamationCircle></div>
                             <div className='petDetails reghis'>
                             <h3 className='petdettitle'>Health History: </h3>
-                            <div className=' petdeta' ><span className='infoLabel '>Deworming:  </span><input onChange={(e) => {checker(e, setDeworming)}}  type='date'  placeholder='No Records' className='infoVal ediet '/></div>
-                            <div className=' petdeta' ><span className='infoLabel '>5-in-1:  </span><input onChange={(e) => {checker(e, setVinI)}}  type='date'  placeholder="MM/DdaD/YYYY" className='infoVal ediet' /></div>
-                            <div className=' petdeta' ><span className='infoLabel '>6-in-1:  </span><input onChange={(e) => {checker(e, setVIinI)}}  type='date' placeholder='No Records'  className='infoVal ediet' /></div>
-                            <div className=' petdeta' ><span className='infoLabel '>Anti-Rabies:</span><input  onChange={(e) => {checker(e, setAntiRabies)}} type='date' placeholder='No Records'  className='infoVal ediet'/></div>
-                            <div className=' petdeta' ><span className='infoLabel '>CheckUp: </span><input  onChange={(e) => {checker(e, setCheckUp)}}  type='date' placeholder='No Records'  className='infoVal ediet' /></div>
+                            <div className=' petdeta' ><span className='infoLabel '>Deworming:  </span><input onChange={(e) => {checkerda(e, setDeworming)}}  type='date'  placeholder='No Records' className='infoVal ediet '/></div>
+                            <div className=' petdeta' ><span className='infoLabel '>5-in-1:  </span><input onChange={(e) => {checkerda(e, setVinI)}}  type='date'  placeholder="MM/DdaD/YYYY" className='infoVal ediet' /></div>
+                            <div className=' petdeta' ><span className='infoLabel '>6-in-1:  </span><input onChange={(e) => {checkerda(e, setVIinI)}}  type='date' placeholder='No Records'  className='infoVal ediet' /></div>
+                            <div className=' petdeta' ><span className='infoLabel '>Anti-Rabies:</span><input  onChange={(e) => {checkerda(e, setAntiRabies)}} type='date' placeholder='No Records'  className='infoVal ediet'/></div>
+                            <div className=' petdeta' ><span className='infoLabel '>CheckUp: </span><input  onChange={(e) => {checkerda(e, setCheckUp)}}  type='date' placeholder='No Records'  className='infoVal ediet' /></div>
                             <div className=' petdeta' ><span className='infoLabel '>Vitamins:  </span>
                                 <Select classNamePrefix='Ediet' id='tagSelect' options={PetVitamins} onChange={(e) => {DdlHandler(e)}}  isMulti isSearchable />
                             </div>
