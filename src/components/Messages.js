@@ -21,6 +21,7 @@ import './Messages.css'
         const recieverID =  (window.location.pathname).substring(10, 50);
         const userId =   this.state.user.uid 
         this.setState({ readError: null, resuid: recieverID, });
+        console.log(userId)
     try {
       
       // console.log(this.state.chat)
