@@ -8,7 +8,8 @@ import { BreedDataCat, BreedDataDog, BreedDatadefault, PetVitamins } from './Sel
 import db from '../firebase/firebase';
 import LoadSc from './LoadSc';
 
-function RegUserForm() {
+function RegUserForm(props) {
+    
     const history = useHistory();
     const [breedData, setbreedData] = useState(BreedDatadefault);
 

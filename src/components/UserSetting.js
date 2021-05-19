@@ -1,20 +1,26 @@
 import React from 'react'
-import { useHistory } from 'react-router-dom'
-import { firebaseApp } from '../firebase/firebase'
+import db, { auth } from '../firebase/firebase'
 import * as Icons from 'react-icons/cg'
 import './UserSetting.css'
 
 function UserSetting(props) {
-    const history = useHistory();
 
 
     const logOut = () => {
-      firebaseApp.auth().signOut().then(() => {
-        history.push('/')
-        console.log('User Successfully SignOut')
-      }).catch((error) => {
-          console.log('Error unexpectedly happen during SignOut')
+      
+      let id = auth.currentUser.uid;
+
+      db.collection('users').doc(id).update({
+        isOnline: false,
+      }).then(user => {
+        auth.signOut();
       })
+      // .th.signOut().then(() => {
+      //   history.push('/')
+      //   console.log('User Successfully SignOut')
+      // }).catch((error) => {
+      //     console.log('Error unexpectedly happen during SignOut')
+      // })
       
     }
 

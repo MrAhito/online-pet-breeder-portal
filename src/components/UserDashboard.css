@@ -7,7 +7,7 @@
 flex: 1;
     height: 90vh;
     position: fixed;
-    z-index: -1;
+    z-index: 1;
     width: 25vw;
 }
 .middle_div{
@@ -18,7 +18,7 @@ flex: 1;
     position: fixed;
     right: 0;
     width: 25vw;
-    z-index: -1;
+    z-index: 1;
     height: 90vh;
     flex: 1;
 }

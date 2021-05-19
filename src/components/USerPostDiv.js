@@ -23,6 +23,7 @@ class USerPostDiv extends Component {
             userName: '',
             userProfile: '',
             loadVisi:false,
+            time: Date.now(),
             ImgVisi: false,
             postImgUp: null,
             postImg: 'https://res.cloudinary.com/pet-breeding/image/upload/v1621078686/aw_bymouj.png',
@@ -141,9 +142,17 @@ async setData(uids, image, postData){
          }
    }
 
+
+ 
     componentDidMount(){
         this.getID();
+        this.interval = setInterval(() => this.setState({ time: Date.now() }), 1000);
     } 
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
+      }
+    
     render() {
         return (
             <>

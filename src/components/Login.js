@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react'
 import * as aiIcons from 'react-icons/cg'
 import { Link, useHistory } from "react-router-dom";
 import './Login.css'
-import { auth } from '../firebase/firebase';
+import db, { auth } from '../firebase/firebase';
 import RegUserForm from './RegUserForm';
 
 function Login() {
@@ -27,8 +27,11 @@ function Login() {
         auth.signInWithEmailAndPassword(
             emailRef.current.value, passRef.current.value
         ).then(user => {
+            db.collection('users').doc(user.user.uid).update({
+                isOnline:true,
+            })
             history.push('/dashboard');
-            console.log(user)
+            console.log(user.user.uid)
         }).catch(err => {
             if (err.code === 'auth/network-request-failed') {
                 setValid("Establishing Internet Connection Failed");
@@ -37,7 +40,7 @@ function Login() {
             } else if (err.code === 'auth/wrong-password') {
                 setValid("Incorrect Password");
             } else {
-
+                setValid("No Account Found");
             }
         });
         }
