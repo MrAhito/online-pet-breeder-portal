@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import db, { auth } from '../firebase/firebase';
+import InboxMessages from './InboxMessages';
 import './Messages.css'
  class Messages extends Component {
     constructor(props) {
@@ -25,7 +26,8 @@ import './Messages.css'
     try {
       
       // console.log(this.state.chat)
-      const ref = db.collection('messages').doc('inboxes').collection(recieverID).orderBy('timestamp');
+      const ref = await  db.collection('messages/inbox/message')//.where('recieverID', 'array-contains', //['2KIkTLsOwlMpjwrSqrnWCnmsykd2', 'z9HcyPh9dXZhhIywCHbjIlOtpgt2']).get().orderBy('timestamp');
+      console.log(ref)
       ref.onSnapshot(ref, snapshop=>{
         console.log(snapshop)
         let chats = [];
@@ -63,7 +65,7 @@ import './Messages.css'
     event.preventDefault();
     this.setState({ writeError: null });
     try {
-      await db.collection('messages').doc('inboxes').collection(this.state.resuid).add({
+      await db.collection('messages/inbox/message').add({
         content: this.state.content,
         timestamp: new Date(),
         uid: this.state.user.uid,
@@ -79,10 +81,13 @@ import './Messages.css'
 
   render() {
   return (
-    <div>
+    <>
+    <div className='inboxes'>
+    <InboxMessages UID={this.state.user.uid} />
+    </div>
     <div className="chats">
       {this.state.chats.map(chat => {
-        return <div className={this.state.senderType === chat.uid ? 'chat sender' : 'chat reciever'} key={chat.timestamp}>Mesage: {chat.content} Time: {new Date(chat.timestamp * 125).toISOString().replace('T', ' ').substring(10, 19)}</div>
+        return <div className={this.state.user.uid === chat.senderID ? 'chat sender' : 'chat reciever'} key={chat.timestamp}>Mesage: {chat.content} Time: {new Date(chat.timestamp * 125).toISOString().replace('T', ' ').substring(10, 19)}</div>
       })}
     </div>
     
@@ -95,7 +100,7 @@ import './Messages.css'
       <button className='brn-messafe' type="submit">Send</button>
     </form>
     
-  </div>
+  </>
         )
     }
 }
