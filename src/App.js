@@ -73,6 +73,7 @@ render() {
         <PrivateRoute path="/users/" authenticated={this.state.authenticated} component={OtherUser}></PrivateRoute>
         <PrivateRoute path="/users/:id" authenticated={this.state.authenticated} component={OtherUser}></PrivateRoute>
         <PrivateRoute path="/messages/:id" authenticated={this.state.authenticated} component={MessagesPage}></PrivateRoute>
+        <PrivateRoute path="/messages" authenticated={this.state.authenticated} component={MessagesPage}></PrivateRoute>
         <PublicRoute path="/admin" authenticated={this.state.authenticated} component={Admin}></PublicRoute>
         <PublicRoute path="/admin/post" authenticated={this.state.authenticated} component={AdmPostPage}></PublicRoute>
        { // <Route path="/:handle">
