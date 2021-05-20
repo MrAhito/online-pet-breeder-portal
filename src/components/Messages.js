@@ -18,15 +18,13 @@ import './Messages.css'
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   async componentDidMount() {
-
-        const recieverID =  (window.location.pathname).substring(10, 50);
-        const userId =   this.state.user.uid 
-        this.setState({ readError: null, resuid: recieverID, });
-        console.log(userId)
     try {
-      
+      const recieverID =  (window.location.pathname).substring(10, 50);
+      const userId =   this.state.user.uid 
+      this.setState({ readError: null, resuid: recieverID, });
+      console.log(userId)
       // console.log(this.state.chat)
-      const ref = await  db.collection('messages/inbox/message')//.where('recieverID', 'array-contains', //['2KIkTLsOwlMpjwrSqrnWCnmsykd2', 'z9HcyPh9dXZhhIywCHbjIlOtpgt2']).get().orderBy('timestamp');
+      const ref = await  db.collection('messages/inbox/message').orderBy('timestamp');
       console.log(ref)
       ref.onSnapshot(ref, snapshop=>{
         console.log(snapshop)
