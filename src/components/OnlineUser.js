@@ -4,15 +4,15 @@ import * as Icons from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 
 function OnlineUser() {
-    const [onLine, setonLine] = useState([])
-    useEffect(() => {
-        const fetchData = async () => {
-            const id = auth.currentUser.uid;
-          const data = await db.collection("users").where('isOnline', '==', true).where('uid', '!=', id).get()
-          setonLine(data.docs.map(doc => doc.data()))
-        }
-        fetchData()
-        }, [])
+        const [onLine, setonLine] = useState([])
+        useEffect(() => {
+            const fetchData = async () => {
+                const id = auth.currentUser.uid;
+            const data = await db.collection("users").where('isOnline', '==', true).where('uid', '!=', id).get()
+            setonLine(data.docs.map(doc => doc.data()))
+            }
+            fetchData()
+            }, [])
     return (
         <>
         {onLine.map((users, index) => (
