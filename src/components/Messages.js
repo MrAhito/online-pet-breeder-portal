@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import db, { auth } from '../firebase/firebase';
-import InboxMessages from './InboxMessages';
 import './Messages.css'
  class Messages extends Component {
     constructor(props) {
@@ -68,7 +67,6 @@ import './Messages.css'
   return (
     <>
     <div className='inboxes'>
-    <InboxMessages />
     </div>
     <div className="chats">
       {this.state.chats.map(chat => {
