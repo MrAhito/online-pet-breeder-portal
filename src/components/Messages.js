@@ -23,7 +23,6 @@ import './Messages.css'
       const userId =   this.state.user.uid 
       this.setState({ readError: null, resuid: recieverID, });
       console.log(userId)
-      // console.log(this.state.chat)
       const ref = await  db.collection('messages/inbox/message').orderBy('timestamp');
       console.log(ref)
       ref.onSnapshot(ref, snapshop=>{
@@ -36,18 +35,6 @@ import './Messages.css'
           this.setState({ chats
           });
         });
-      
-      
-      // db.collection("messages").where('senderID', '==', this.state.user.uid).where('recieverID', '==', (window.location.pathname).substring(10, 50)).get()
-      // .orderBy('timestamp').onSnapshot(snapshot => {
-      //   let chats = [];
-      //   snapshot.forEach((snap) => {
-      //   chats.push(snap.data());
-      //   });
-      //   console.log('message fetched')
-      //   this.setState({ chats
-      //   });
-      // });
     } catch (error) {
       this.setState({ readError: error.message });
     }
@@ -81,16 +68,16 @@ import './Messages.css'
   return (
     <>
     <div className='inboxes'>
-    <InboxMessages UID={this.state.user.uid} />
+    <InboxMessages />
     </div>
     <div className="chats">
       {this.state.chats.map(chat => {
-        return <div className={this.state.user.uid === chat.senderID ? 'chat sender' : 'chat reciever'} key={chat.timestamp}>Mesage: {chat.content} Time: {new Date(chat.timestamp * 125).toISOString().replace('T', ' ').substring(10, 19)}</div>
+        return <div className={this.state.user.uid === chat.senderID ? 'chat sender' : 'chat reciever'} key={chat.timestamp}><span className='contentSpan'>{chat.content}</span> 
+        <span className='timestampspan'>{new Date(chat.timestamp * 125).toISOString().replace('T', ' ').substring(10, 19)}</span></div>
       })}
     </div>
     
     <div>
-        Login in as: <strong>{this.state.resuid}</strong> ----- <strong>{this.state.user.uid}</strong>
       </div>
     <form className='formmessage' onSubmit={this.handleSubmit}>
       <input placeholder='Enter your message here... ' className='InputMessage' onChange={this.handleChange} value={this.state.content}></input>

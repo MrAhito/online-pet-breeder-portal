@@ -4,14 +4,23 @@ import db from '../firebase/firebase';
 
 function InboxMessages(props) {
     const [inbox, setinbox] = useState([])
+    const [userdata, setuserdata] = useState([])
     useEffect(() => {
-        const fetchData = async () => {
-            // const id = auth.currentUser.uid;
-        const data = await db.collection("messages").doc('inboxes').collection(props.UID).get()
+        try{
+        const fetchData = async (e) => {
+            e.preventDefault();
+            const id = (window.location.pathname).substring(10, 50);
+            console.log(id)
+            const user = await db.collection('users').where('uid', `==`, (window.location.pathname).substring(10, 50)).get();
+            setuserdata(user.docs.map(doc => doc.data()));
+        const data = await db.collection("messages").doc('inboxes').collection((window.location.pathname).substring(10, 50)).get()
         setinbox(data.docs.map(doc => doc.data()))
         }
-        fetchData()
-        }, [props.UID])
+    }catch(error){
+        
+    }
+            console.log(userdata);
+        },)
     return (
         <>
         {inbox.map((users, index) => (

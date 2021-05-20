@@ -10,28 +10,30 @@ flex-direction: column;
     border: 1px solid var(--borderColor);
     justify-content: flex-start;
     align-items: flex-end;
-    margin: 1vh auto 0 auto;
+    margin: 1vh auto 2.5vh auto;
 overflow: auto;
 }
 .chat{
-    font-size: 2.1vh;
+    font-size: 2.3vh;
     cursor: pointer;
     display: flex;
     margin: 1vh 0;
     flex-direction:column;
     font-weight: 600;
+    justify-content: center;
+    min-height: 5vh;
     transition: 450ms all ease-in-out;
-    padding: 2vh 2.5vh;
+    padding: .75vh 2.5vh;
 }
 .sender{
     background-color: var(--primaryColor);
     border-radius:  1vw 1vw 0 1vw;
+    align-items: center;
 }
 .reciever{
-    display: flex;
     align-self: flex-start;
-    border-radius:  1vw 1vw 1vw 0;
-    right: 0;
+    border-radius:  1vw 1vw  1vw 0 ;
+    align-items: flex-end;
     background-color:rgb(185, 106, 146);
 }
 .chat:hover{
@@ -81,4 +83,15 @@ border-color: var(--primaryColor);
 transition: 0.45s all ease-in-out;
 border-radius: .7vw;
 color: var(--tertiaryColor);
+}
+.contentSpan{
+    display: flex;
+}
+.timestampspan{
+    font-size: 1.5vh;
+    position: relative;
+    display: none;
+    justify-self: flex-end;
+    justify-self: flex-end;
+
 }
