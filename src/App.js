@@ -66,18 +66,19 @@ class App extends Component {
 render() {
   return this.state.loading === true ? <h2>Loading...</h2> : (
     <Router>
-      <Switch>
-        <Route exact path="/" component={ HomePage }></Route>
-        <PrivateRoute path="/dashboard" authenticated={this.state.authenticated} component={Dashboard}></PrivateRoute>
-        <PrivateRoute path="/userprofile" authenticated={this.state.authenticated} component={ProfileUser}></PrivateRoute>
-        <PrivateRoute path="/users/" authenticated={this.state.authenticated} component={OtherUser}></PrivateRoute>
-        <PrivateRoute path="/users/:id" authenticated={this.state.authenticated} component={OtherUser}></PrivateRoute>
-        <PrivateRoute path="/messages/:id" authenticated={this.state.authenticated} component={MessagesPage}></PrivateRoute>
-        <PrivateRoute path="/messages" authenticated={this.state.authenticated} component={MessagesPage}></PrivateRoute>
-        <PublicRoute path="/admin" authenticated={this.state.authenticated} component={Admin}></PublicRoute>
-        <PublicRoute path="/admin/post" authenticated={this.state.authenticated} component={AdmPostPage}></PublicRoute>
-      
-      </Switch>
+
+    <Switch>
+    <PublicRoute path="/admin/post" exact authenticated={this.state.authenticated}  component={AdmPostPage}></PublicRoute>
+    <PublicRoute path="/admin" authenticated={this.state.authenticated} component={Admin}></PublicRoute>
+    <Route exact path="/" component={ HomePage }></Route>
+    <PrivateRoute path="/dashboard" authenticated={this.state.authenticated} component={Dashboard}></PrivateRoute>
+    <PrivateRoute path="/userprofile" authenticated={this.state.authenticated} component={ProfileUser}></PrivateRoute>
+    <PrivateRoute path="/users/" authenticated={this.state.authenticated} component={OtherUser}></PrivateRoute>
+    <PrivateRoute path="/users/:id" authenticated={this.state.authenticated} component={OtherUser}></PrivateRoute>
+    <PrivateRoute path="/messages/:id" authenticated={this.state.authenticated} component={MessagesPage}></PrivateRoute>
+    <PrivateRoute path="/messages" authenticated={this.state.authenticated} component={MessagesPage}></PrivateRoute>
+  </Switch>
+     
     </Router>
     )
   }
