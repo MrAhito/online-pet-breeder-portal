@@ -4,7 +4,7 @@ import './USerRightDiv.css'
     render() {
         return (
             <div className='div_right'>
-               helll
+
             </div>
         )
     }

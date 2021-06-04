@@ -8,8 +8,6 @@ import './UserProfileBody.css'
 import OtherPetInforma from './OtherPetInforma';
 import UserPostings from './UserPostings';
 import { Link } from 'react-router-dom';
-// import PetInforma from './PetInforma';
-// import NewPet from './NewPet';
  class OtherUserProfile extends Component {
     constructor(props) {
         super(props)

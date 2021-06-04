@@ -36,22 +36,4 @@ import './USerLeftDiv.css'
       }     
  }
 
-
-    // render() {
-    //     return (
-    //            <div className='otherUserDiv'>
-    //                 Other Users
-
-    //                 <div className='OnLineuserlist'>
-                    
-    //                 </div>
-    //                 <div className='OffLineuserlist'>
-
-    //                 </div>
-    //            </div>
-
-
-        // )
-    // }
-
 export default USerLeftDiv

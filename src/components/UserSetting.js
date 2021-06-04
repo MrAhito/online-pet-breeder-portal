@@ -15,13 +15,6 @@ function UserSetting(props) {
       }).then(user => {
         auth.signOut();
       })
-      // .th.signOut().then(() => {
-      //   history.push('/')
-      //   console.log('User Successfully SignOut')
-      // }).catch((error) => {
-      //     console.log('Error unexpectedly happen during SignOut')
-      // })
-      
     }
 
 

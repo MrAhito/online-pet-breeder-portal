@@ -33,10 +33,7 @@ function AdminPost() {
     fetchData()
     })
 
-    const ApprovePost = (acrt, postid,poserName, photo, post, poserId, poserDp, tag, time) => {
-
-        // console.log(acrt + "\n" +  postid + "\n" + poserName + "\n" +  photo + "\n" +  post + "\n" + poserId + "\n" + poserDp + "\n" + 
-        //  tag + "\n" + time)
+    const ApprovePost = (acrt, postid, poserName, photo, post, poserId, poserDp, tag, time) => {
         setloadVisi(true);
          const postRef = db.doc("post/"+acrt+"/post/"+postid);
          setwarn(false)
