@@ -6,6 +6,7 @@
     "@babel/core": "^7.14.0",
     "@babel/preset-env": "^7.14.1",
     "@babel/preset-react": "^7.13.13",
+    "@firebase/webchannel-wrapper": "^0.4.1",
     "@testing-library/dom": "^7.30.4",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
