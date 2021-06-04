@@ -48,7 +48,7 @@ function Login() {
     return (
         <>
             <div id='home' className="log-container">
-                <div className="log-title"><h1>Pet Breeding Portal</h1><p>Your Pet Breeding Companion</p><a href='/training-page'>{"<=== TO Training Page"}</a></div>
+                <div className="log-title"><h1>Pet Breeding Portal</h1><p>Your Pet Breeding Companion</p></div>
                 <div className="f-container">
                     <form className="form-container">
                         <input type="text" name="email" ref={emailRef} id="txt-email" placeholder="Email Address" className="txt txemail" required />

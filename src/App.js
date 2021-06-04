@@ -85,26 +85,3 @@ render() {
 }
 
 export default App
-
-  
-    //   <Router>
-    //     <Switch>
-    //       <Route path='/' exact component={HomePage} />
-    //     </Switch>
-    //     <Switch>
-    //       <Route path='/dashboard' exact component={Dashboard} />
-    //     </Switch>
-    //     <Switch>
-    //       <Route path='/admin' exact component={Admin} />
-    //     </Switch>
-    //     <Switch>
-    //       <Route path='/userprofile' exact component={ProfileUser}/>
-    //     </Switch>
-    //     <Switch>
-    //     <Route path='/training-page' exact component={HomeTrain}/>
-    //   </Switch>
-    //   <Switch>
-    //   <Route path='/admin/post' exact component={AdmPostPage}/>
-    // </Switch>
-    //   </Router>
-  
